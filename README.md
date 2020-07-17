@@ -1,7 +1,11 @@
 basic search pages: https://wordpress.org/support/article/creating-a-search-page/#creating-a-search-page
+
 a basic api integration: https://github.com/2Fwebd/feedier-wordpress-plugin/blob/master/feedier.php
+
 another api integration (using transient caching): https://webdesign.tutsplus.com/articles/how-to-incorporate-external-apis-in-your-wordpress-theme-or-plugin--cms-33542
+
 great article about wp api integration patterns: https://www.toptal.com/wordpress/wordpress-api-integration
+
 walk through integrating gh api: https://www.smashingmagazine.com/2016/03/making-a-wordpress-plugin-that-uses-service-apis/
 
 
