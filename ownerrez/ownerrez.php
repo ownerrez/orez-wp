@@ -89,7 +89,6 @@ require plugin_dir_path(__FILE__) . 'includes/class-ownerrez.php';
  */
 function run_ownerrez()
 {
-
 	$plugin = new OwnerRez();
 	$plugin->run();
 }

@@ -47,7 +47,6 @@ class OwnerRez_Api
 
 	public function __construct($ownerrez, $version, $username, $token)
 	{
-
 		$this->ownerrez = $ownerrez;
 		$this->version = $version;
 		$this->username = $username;
@@ -58,42 +57,48 @@ class OwnerRez_Api
 
 	public function test_credentials($username, $token)
 	{
+		$args = array(
+			"headers" => array(
+				"Authorization" => "Basic " . base64_encode($username . ":" . $token)
+			)
+		);
 
-		$headers = array("Authorization" => "Basic " . base64_encode($username . ":" . $token));
-
-		$response = $this->call("/users/me", NULL, $headers);
+		$response = $this->call("/users/me", $args);
 
 		if (is_wp_error($response))
 			return false;
 
 		$body = json_decode(wp_remote_retrieve_body($response));
 
-		return strcasecmp($body->EmailAddress, $username);
+		return strcasecmp($body->EmailAddress, $username) === 0; // check email insensitive
 	}
 
-	function call($path, $additionalArgs, $additionalHeaders)
+	function call($path, $additionalArgs)
 	{
-
 		$args = array(
 			"method" => "GET",
 			"headers" => array(
 				"Authorization" => "Basic " . base64_encode($this->username . ":" . $this->token),
-				"Content-Type" => "application/json",
-				"User-Agent" => "wordpress-plugin-ownerrez-v" . $this->version
+				"Content-Type" => "application/json"
 			)
 		);
 
+		$argArrays = array("headers");
+
 		if (isset($additionalArgs)) {
-			foreach ($additionalArgs as $key => $value) {
-				$args[$key] = $value;
+			foreach ($additionalArgs as $arg => $argValue) {
+				if (in_array($arg, $argArrays)) {
+					foreach ($additionalArgs[$arg] as $header => $headerValue) {
+						$args[$arg][$header] = $headerValue;
+					}
+				} else {
+					$args[$arg] = $argValue;
+				}
 			}
 		}
 
-		if (isset($additionalHeaders)) {
-			foreach ($additionalHeaders as $key => $value) {
-				$args["headers"][$key] = $value;
-			}
-		}
+		// don't allow overriding the user agent
+		$args["headers"]["User-Agent"] = "wordpress-plugin-ownerrez-v" . $this->version;
 
 		$response       = wp_remote_request($this->apiRoot . $path, $args);
 		$code           = wp_remote_retrieve_response_code($response);

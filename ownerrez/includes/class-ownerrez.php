@@ -109,7 +109,6 @@ class OwnerRez
 	 */
 	private function load_dependencies()
 	{
-
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-loader.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-i18n.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-api.php';
