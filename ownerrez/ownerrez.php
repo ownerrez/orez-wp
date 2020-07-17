@@ -26,7 +26,7 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
 	die;
 }
 
@@ -35,34 +35,48 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'OWNERREZ_VERSION', '1.0.0' );
+define('OWNERREZ_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-ownerrez-activator.php
  */
-function activate_ownerrez() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-ownerrez-activator.php';
+function activate_ownerrez()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-ownerrez-activator.php';
 	OwnerRez_Activator::activate();
+}
+
+/**
+ * The code that runs AFTER plugin activation.
+ * This action is documented in includes/class-ownerrez-activator.php
+ */
+function activated_ownerrez($plugin)
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-ownerrez-activator.php';
+	OwnerRez_Activator::activated();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-ownerrez-deactivator.php
  */
-function deactivate_ownerrez() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-ownerrez-deactivator.php';
+function deactivate_ownerrez()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-ownerrez-deactivator.php';
 	OwnerRez_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_ownerrez' );
-register_deactivation_hook( __FILE__, 'deactivate_ownerrez' );
+register_activation_hook(__FILE__, 'activate_ownerrez');
+register_deactivation_hook(__FILE__, 'deactivate_ownerrez');
+
+add_action("activated_plugin", "activated_ownerrez");
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-ownerrez.php';
+require plugin_dir_path(__FILE__) . 'includes/class-ownerrez.php';
 
 /**
  * Begins execution of the plugin.
@@ -73,10 +87,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-ownerrez.php';
  *
  * @since    1.0.0
  */
-function run_ownerrez() {
+function run_ownerrez()
+{
 
 	$plugin = new OwnerRez();
 	$plugin->run();
-
 }
 run_ownerrez();
