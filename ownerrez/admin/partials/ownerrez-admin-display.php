@@ -12,7 +12,7 @@
  * @subpackage OwnerRez/admin/partials
  */
 
-function orez_render_admin($username, $token, $status)
+function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteName)
 { ?>
 
     <div class="wrap">
@@ -45,6 +45,14 @@ function orez_render_admin($username, $token, $status)
             <table class="form-table" role="presentation">
                 <tr>
                     <th scope="row">
+                        <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
+                    </th>
+                    <td>
+                        <input id="ownerrez_apiRoot" class="regular-text" type="text" name="ownerrez_apiRoot" value="<?php echo $apiRoot; ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
                         <label for="ownerrez_username"><?php _e("OwnerRez Username (email):", "ownerrez"); ?></label>
                     </th>
                     <td>
@@ -57,13 +65,23 @@ function orez_render_admin($username, $token, $status)
                     </th>
                     <td>
                         <input id="ownerrez_token" class="regular-text" type="password" name="ownerrez_token" value="<?php echo $token; ?>" />
-                        <p class="description">You can generate an access token in OwnerRez under My Account -> Developer / API Settings.</p>
+                        <p class="description"><?php _e("You can generate an access token in OwnerRez under My Account -> Developer / API Settings.", "ownerrez"); ?></p>
                     </td>
                 </tr>
+                <?php if ($externalSiteName) { ?>
+                    <tr>
+                        <th scope="row">
+                            <label for="ownerrez_externalSiteName"><?php _e("Registered as External Site:", "ownerrez"); ?></label>
+                        </th>
+                        <td>
+                            <input id="ownerrez_token" readonly class="regular-text" type="text" name="ownerrez_externalSiteName" value="<?php echo $externalSiteName; ?>" />
+                        </td>
+                    </tr>
+                <?php } ?>
             </table>
 
             <p class="submit">
-                <button class="button button-primary" type="submit"><?php _e("Save", "ownerrez"); ?></button>
+                <button class="button button-primary" type="submit"><?php _e("Save & Register", "ownerrez"); ?></button>
                 <!-- <button class="button button-default" type="button" id="ownerrez-testconnection"><?php _e("Test Connection", "ownerrez"); ?></button> -->
             </p>
         </form>

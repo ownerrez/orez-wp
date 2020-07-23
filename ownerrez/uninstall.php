@@ -30,5 +30,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
+delete_option("ownerrez_apiRoot");
 delete_option("ownerrez_username");
 delete_option("ownerrez_token");
+delete_option("ownerrez_externalSiteId");
+delete_option("ownerrez_externalSiteName");

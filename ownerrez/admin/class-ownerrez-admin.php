@@ -18,10 +18,11 @@
  *
  * @package    OwnerRez
  * @subpackage OwnerRez/admin
- * @author     Your Name <dev@ownerreservations.com>
+ * @author     OwnerRez Inc <dev@ownerreservations.com>
  */
 class OwnerRez_Admin
 {
+    const DEFAULT_API_ROOT = 'https://api.ownerreservations.com/';
 
 	/**
 	 * The ID of this plugin.
@@ -42,27 +43,16 @@ class OwnerRez_Admin
 	private $version;
 
 	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      OwnerRez_Api    $api    The connection to OwnerRez.
-	 */
-	private $api;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string    $ownerrez       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
-	 * @param      OwnerRez_Api    $api    The OwnerRez api connector.
 	 */
-	public function __construct($ownerrez, $version, $api)
+	public function __construct($ownerrez, $version)
 	{
 		$this->ownerrez = $ownerrez;
 		$this->version = $version;
-		$this->api = $api;
 	}
 
 	/**
@@ -96,11 +86,12 @@ class OwnerRez_Admin
 			function () {
 				include plugin_dir_path(dirname(__FILE__)) . "admin/partials/ownerrez-admin-display.php";
 
+                $apiRoot = (!empty($_POST["ownerrez_apiRoot"])) ? $_POST["ownerrez_apiRoot"] : get_option('ownerrez_apiRoot', self::DEFAULT_API_ROOT);
 				$username = (!empty($_POST["ownerrez_username"])) ? $_POST["ownerrez_username"] : get_option('ownerrez_username');
 				$token = (!empty($_POST["ownerrez_token"])) ? $_POST["ownerrez_token"] : get_option('ownerrez_token');
 				$status = (!empty($_GET["status"])) ? $_GET["status"] : NULL;
 
-				orez_render_admin($username, $token, $status);
+				orez_render_admin($username, $token, $status, $apiRoot, get_option('ownerrez_externalSiteName'));
 			}
 		);
 	}
@@ -108,16 +99,21 @@ class OwnerRez_Admin
 	public function menu_settings_save()
 	{
 		// Get the options that were sent
+        $apiRoot = (!empty($_POST["ownerrez_apiRoot"])) ? $_POST["ownerrez_apiRoot"] : self::DEFAULT_API_ROOT;
 		$username = (!empty($_POST["ownerrez_username"])) ? $_POST["ownerrez_username"] : NULL;
 		$token = (!empty($_POST["ownerrez_token"])) ? $_POST["ownerrez_token"] : NULL;
 
 		// test creds
-		$result = $this->api->test_credentials($username, $token);
+        $client = new OwnerRez\Api\Client($username, $token, $apiRoot);
+		$result = json_decode($client->externalSites()->register());
 
-		if ($result) {
+		if (isset($result->id)) {
 			// save creds
+            update_option("ownerrez_apiRoot", $apiRoot, true);
 			update_option("ownerrez_username", $username, true);
 			update_option("ownerrez_token", $token, true);
+			update_option("ownerrez_externalSiteId", $result->id, true);
+            update_option("ownerrez_externalSiteName", $result->name, true);
 
 			header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
 			exit;

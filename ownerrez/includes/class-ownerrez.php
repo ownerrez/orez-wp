@@ -41,15 +41,6 @@ class OwnerRez
 	protected $loader;
 
 	/**
-	 * The api that connects to OwnerRez.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      OwnerRez_Api    $api    Connects to OwnerRez.
-	 */
-	protected $api;
-
-	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
@@ -111,12 +102,11 @@ class OwnerRez
 	{
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-loader.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-i18n.php';
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-api.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ownerrez-public.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-admin.php';
-		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ownerrez-public.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-ajax.php';
 
 		$this->loader = new OwnerRez_Loader();
-		$this->api = new OwnerRez_Api($this->get_ownerrez(), $this->get_version(), get_option("ownerrez_username"), get_option("ownerrez_token"));
 	}
 
 	/**
@@ -145,12 +135,17 @@ class OwnerRez
 	 */
 	private function define_admin_hooks()
 	{
-		$plugin_admin = new OwnerRez_Admin($this->get_ownerrez(), $this->get_version(), $this->get_api());
+		$plugin_admin = new OwnerRez_Admin($this->get_ownerrez(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_settings');
 		$this->loader->add_action('admin_post_save_ownerrez_settings', $plugin_admin, 'menu_settings_save');
+
+		// define admin ajax end points
+        $plugin_ajax = new OwnerRez_Ajax($this->get_ownerrez(), $this->get_version());
+
+        $this->loader->add_filter('wp_ajax_ownerrez', $plugin_ajax, 'call');
 	}
 
 	/**
@@ -199,17 +194,6 @@ class OwnerRez
 	public function get_loader()
 	{
 		return $this->loader;
-	}
-
-	/**
-	 * The reference to the class that connects to OwnerRez.
-	 *
-	 * @since     1.0.0
-	 * @return    OwnerRez_Api
-	 */
-	public function get_api()
-	{
-		return $this->api;
 	}
 
 	/**

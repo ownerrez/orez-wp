@@ -91,5 +91,9 @@ function run_ownerrez()
 {
 	$plugin = new OwnerRez();
 	$plugin->run();
+
+    if ( is_readable( plugin_dir_path(__FILE__) . 'lib/autoload.php' ) ) {
+        require plugin_dir_path(__FILE__) . 'lib/autoload.php';
+    }
 }
 run_ownerrez();
