@@ -1,0 +1,19 @@
+{
+    "name": "ownerrez/orez-wp",
+    "description": "Official WordPress plugin for integrating the OwnerRez API.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "OwnerRez Inc",
+            "email": "dev@ownerreservations.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ownerrez/orez-api": "dev-master"
+    },
+    "config": {
+        "vendor-dir": "lib"
+    }
+}
