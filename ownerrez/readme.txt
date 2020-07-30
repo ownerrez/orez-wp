@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: ownerrez
 Tags:
-Requires at least: 5.4.2
+Requires at least: 5.4
 Tested up to: 5.4.2
 Stable tag: trunk
 License: MIT

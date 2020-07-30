@@ -89,11 +89,11 @@ require plugin_dir_path(__FILE__) . 'includes/class-ownerrez.php';
  */
 function run_ownerrez()
 {
-	$plugin = new OwnerRez();
-	$plugin->run();
-
     if ( is_readable( plugin_dir_path(__FILE__) . 'lib/autoload.php' ) ) {
         require plugin_dir_path(__FILE__) . 'lib/autoload.php';
     }
+
+	$plugin = new OwnerRez();
+	$plugin->run();
 }
 run_ownerrez();

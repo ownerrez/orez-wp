@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ownerrez/orez-api-php.git",
-                "reference": "e3d435334bbe84ffa8e141ea3e1a7c6d94dd7144"
+                "reference": "3e9149e030643c55e63c9e71e639b6ab178ddde3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/e3d435334bbe84ffa8e141ea3e1a7c6d94dd7144",
-                "reference": "e3d435334bbe84ffa8e141ea3e1a7c6d94dd7144",
+                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/3e9149e030643c55e63c9e71e639b6ab178ddde3",
+                "reference": "3e9149e030643c55e63c9e71e639b6ab178ddde3",
                 "shasum": ""
             },
             "require": {
@@ -230,7 +230,9 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "OwnerRez\\Api\\": "src/"
+                    "OwnerRez\\Api\\": "src/",
+                    "OwnerRez\\Api\\Glue\\": "src/glue/",
+                    "OwnerRez\\Api\\Resources\\": "src/resources/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -245,7 +247,7 @@
                 }
             ],
             "description": "Official PHP wrapper for the OwnerRez API",
-            "time": "2020-07-23T20:30:15+00:00"
+            "time": "2020-07-30T16:49:32+00:00"
         },
         {
             "name": "psr/http-client",
