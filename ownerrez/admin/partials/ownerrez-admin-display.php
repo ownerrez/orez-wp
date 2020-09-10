@@ -65,7 +65,7 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                     </th>
                     <td>
                         <input id="ownerrez_token" class="regular-text" type="password" name="ownerrez_token" value="<?php echo $token; ?>" />
-                        <p class="description"><?php _e("You can generate an access token in OwnerRez under My Account -> Developer / API Settings.", "ownerrez"); ?></p>
+                        <p class="description"><?php _e("You can generate an access token in OwnerRez under Settings -> External Websites.", "ownerrez"); ?></p>
                     </td>
                 </tr>
                 <?php if ($externalSiteName) { ?>

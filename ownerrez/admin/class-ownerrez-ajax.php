@@ -77,6 +77,10 @@ class OwnerRez_Ajax
 
 	public function call()
     {
+        if ( !wp_verify_nonce( $_REQUEST['nonce'], "ownerrez_nonce")) {
+            exit("Invalid request");
+        }
+
         if (!is_string($this->get_client()))
         {
             $call = $_POST['call'];
@@ -85,7 +89,15 @@ class OwnerRez_Ajax
             $get_resource = $call['resource'];
             $resource = $this->get_client()->$get_resource();
 
-            echo $resource->request($verb, $call['action'], $call['id'], $call['query']);
+            try {
+                echo json_encode([ 'status' => 'success', 'response' => json_decode($resource->request($verb, $call['action'], $call['id'], $call['query'], $call['body'])) ]);
+            }
+            catch (\GuzzleHttp\Exception\ServerException $ex) {
+                echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
+            }
+//            catch (Exception $ex) {
+//                echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString() ]);
+//            }
         }
 
         wp_die(); // this is required to terminate immediately and return a proper response
