@@ -77,20 +77,22 @@ class OwnerRez_Ajax
 
 	public function call()
     {
-        if ( !wp_verify_nonce( $_REQUEST['nonce'], "ownerrez_nonce")) {
+        $call = $_POST['call'];
+        $verb = !empty($call['verb']) ? strtolower($call['verb']) : 'get';
+        $get_resource = $call['resource'];
+        $action = $call['action'];
+
+        // This is useful for testing, but each ajax call should be restricted to a unqiue nonce for security
+        if ( !wp_verify_nonce( $_REQUEST['nonce'], "ownerrez_nonce_".$get_resource."_".$verb."_".$action)) {
             exit("Invalid request");
         }
 
         if (!is_string($this->get_client()))
         {
-            $call = $_POST['call'];
-            $verb = !empty($call['verb']) ? strtolower($call['verb']) : 'get';
-
-            $get_resource = $call['resource'];
             $resource = $this->get_client()->$get_resource();
 
             try {
-                echo json_encode([ 'status' => 'success', 'response' => json_decode($resource->request($verb, $call['action'], $call['id'], $call['query'], $call['body'])) ]);
+                echo json_encode([ 'status' => 'success', 'response' => json_decode($resource->request($verb, $action, $call['id'], $call['query'], $call['body'])) ]);
             }
             catch (\GuzzleHttp\Exception\ServerException $ex) {
                 echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
