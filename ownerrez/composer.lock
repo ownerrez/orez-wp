@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.0.1",
+            "version": "7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "2d9d3c186a6637a43193e66b097c50e4451eaab2"
+                "reference": "7edeaa528fbb57123028bd5a76b9ce9540194e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2d9d3c186a6637a43193e66b097c50e4451eaab2",
-                "reference": "2d9d3c186a6637a43193e66b097c50e4451eaab2",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/7edeaa528fbb57123028bd5a76b9ce9540194e26",
+                "reference": "7edeaa528fbb57123028bd5a76b9ce9540194e26",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,6 @@
                 "psr/http-client-implementation": "1.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.0",
                 "ext-curl": "*",
                 "php-http/client-integration-tests": "dev-phpunit8",
                 "phpunit/phpunit": "^8.5.5",
@@ -45,7 +44,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.0-dev"
+                    "dev-master": "7.1-dev"
                 }
             },
             "autoload": {
@@ -85,7 +84,25 @@
                 "rest",
                 "web service"
             ],
-            "time": "2020-06-27T10:33:25+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/alexeyshockov",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/gmponos",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-22T09:10:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -215,12 +232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ownerrez/orez-api-php.git",
-                "reference": "3e9149e030643c55e63c9e71e639b6ab178ddde3"
+                "reference": "d04fd7c8c11eadad097a3cedaee8996848781143"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/3e9149e030643c55e63c9e71e639b6ab178ddde3",
-                "reference": "3e9149e030643c55e63c9e71e639b6ab178ddde3",
+                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/d04fd7c8c11eadad097a3cedaee8996848781143",
+                "reference": "d04fd7c8c11eadad097a3cedaee8996848781143",
                 "shasum": ""
             },
             "require": {
@@ -247,7 +264,7 @@
                 }
             ],
             "description": "Official PHP wrapper for the OwnerRez API",
-            "time": "2020-07-30T16:49:32+00:00"
+            "time": "2020-09-29T16:00:50+00:00"
         },
         {
             "name": "psr/http-client",
