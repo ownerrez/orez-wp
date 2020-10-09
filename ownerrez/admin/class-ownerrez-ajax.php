@@ -75,16 +75,37 @@ class OwnerRez_Ajax
         return $this->client;
     }
 
+    public function call_nopriv()
+    {
+        // TODO: make this a setting
+        $allowedRequestKeys = array(
+            "quotes_test_",
+            "quotes_post_",
+            "guests_post_"
+        );
+
+        $this->execute_request($allowedRequestKeys);
+    }
+
 	public function call()
     {
-        $call = $_POST['call'];
-        $verb = !empty($call['verb']) ? strtolower($call['verb']) : 'get';
+        $this->execute_request(null);
+    }
+
+    private function execute_request($allowedRequestKeys)
+    {
+        $call = $_POST['or_call'];
+        $verb = !empty($call['verb']) ? $call['verb'] : 'get';
         $get_resource = $call['resource'];
         $action = $call['action'];
 
-        // This is useful for testing, but each ajax call should be restricted to a unqiue nonce for security
-        if ( !wp_verify_nonce( $_REQUEST['nonce'], "ownerrez_nonce_".$get_resource."_".$verb."_".$action)) {
-            exit("Invalid request");
+        if ($allowedRequestKeys != null)
+        {
+            $requestKey = strtolower($get_resource . "_" . $verb . "_" . $action);
+
+            if (!in_array($requestKey, $allowedRequestKeys)) {
+                exit ("404 Not Found");
+            }
         }
 
         if (!is_string($this->get_client()))
@@ -97,9 +118,6 @@ class OwnerRez_Ajax
             catch (\GuzzleHttp\Exception\ServerException $ex) {
                 echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
             }
-//            catch (Exception $ex) {
-//                echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString() ]);
-//            }
         }
 
         wp_die(); // this is required to terminate immediately and return a proper response

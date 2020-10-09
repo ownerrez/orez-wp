@@ -146,6 +146,7 @@ class OwnerRez
         $plugin_ajax = new OwnerRez_Ajax($this->get_ownerrez(), $this->get_version());
 
         $this->loader->add_filter('wp_ajax_ownerrez', $plugin_ajax, 'call');
+        $this->loader->add_filter('wp_ajax_nopriv_ownerrez', $plugin_ajax, 'call_nopriv');
 	}
 
 	/**
