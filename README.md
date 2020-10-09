@@ -2,6 +2,8 @@
 
 The official WordPress plugin for the OwnerRez API.
 
+THIS IS A BETA LIBRARY. SUBMIT PROBLEMS AND REQUESTS AS ISSUES.
+
 ## Usage
 
 After installation, go to Admin -> Settings -> OwnerRez and enter a username and personal access token to register your wordpress site.
