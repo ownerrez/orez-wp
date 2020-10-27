@@ -40,7 +40,7 @@ class OwnerRez_Ajax
 	 */
 	private $version;
 
-    private $client;
+	private $api;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -53,27 +53,8 @@ class OwnerRez_Ajax
 	{
 		$this->ownerrez = $ownerrez;
 		$this->version = $version;
-        $this->client = null;
+        $this->api = new OwnerRez_ApiWrapper();
 	}
-
-	function get_client()
-    {
-        if ($this->client == null)
-        {
-            $apiRoot = get_option('ownerrez_apiRoot', null);
-            $username = get_option('ownerrez_username', null);
-            $token = get_option('ownerrez_token', null);
-
-            if ($apiRoot == null || $username == null || $token == null)
-            {
-                return '{ \'exception\': \'Configuration incomplete. Go to ' . get_bloginfo('url') . '/wp-admin/options-general.php?page=ownerrez to complete plugin setup.\' }';
-            }
-
-            $this->client = new \OwnerRez\Api\Client($username, $token, $apiRoot);
-        }
-
-        return $this->client;
-    }
 
     public function call_nopriv()
     {
@@ -108,16 +89,12 @@ class OwnerRez_Ajax
             }
         }
 
-        if (!is_string($this->get_client()))
-        {
-            $resource = $this->get_client()->$get_resource();
-
-            try {
-                echo json_encode([ 'status' => 'success', 'response' => json_decode($resource->request($verb, $action, $call['id'], $call['query'], $call['body'])) ]);
-            }
-            catch (\GuzzleHttp\Exception\ServerException $ex) {
-                echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
-            }
+        try {
+            $response = $this->api->send_request($get_resource, $verb, $action, $call['id'], $call['query'], $call['body']);
+            echo json_encode(['status' => 'success', 'response' => json_decode($response)]);
+        }
+        catch (\GuzzleHttp\Exception\ServerException $ex) {
+            echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
         }
 
         wp_die(); // this is required to terminate immediately and return a proper response
