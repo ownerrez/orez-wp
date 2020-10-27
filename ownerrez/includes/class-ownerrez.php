@@ -120,7 +120,6 @@ class OwnerRez
 	 */
 	private function set_locale()
 	{
-
 		$plugin_i18n = new OwnerRez_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
@@ -147,6 +146,7 @@ class OwnerRez
 
         $this->loader->add_filter('wp_ajax_ownerrez', $plugin_ajax, 'call');
         $this->loader->add_filter('wp_ajax_nopriv_ownerrez', $plugin_ajax, 'call_nopriv');
+
 	}
 
 	/**
