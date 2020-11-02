@@ -102,6 +102,7 @@ class OwnerRez
 	{
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-loader.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-i18n.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ownerrez-apiwrapper.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ownerrez-public.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-admin.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-ajax.php';
