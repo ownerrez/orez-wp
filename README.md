@@ -39,3 +39,5 @@ All ownerrez shortcodes start with `ownerrez` and require a `type` parameter. Th
 - `listing` : renders listing details. Required parameters: `id`, `field` (string) or `json` (boolean)
 - `widget_photo_carousel` : renders a photo carousel for a single property. Required parameters: `id`
 - `widget_amenities_list` : renders a bullet list of call-out amenities for a single property. Required parameters: `id`
+
+Example: `[ownerrez type="property" id="orp12345" field="name"]`
