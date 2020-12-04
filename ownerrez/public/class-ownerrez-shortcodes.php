@@ -102,12 +102,14 @@ class OwnerRez_ShortCodes {
         return $titleStr;
     }
 
-    function only_strings($result)
+    function only_strings($result, $additionalArgs)
     {
         if (is_string($result))
             return $result;
         elseif (is_array($result))
             return join(", ", $result);
+        elseif (array_key_exists("format", $additionalArgs))
+            return sprintf($additionalArgs["format"], $result);
         else
             return "[Unknown]";
     }
@@ -174,12 +176,12 @@ class OwnerRez_ShortCodes {
 
     function type_property($attrs, $content, $additionalArgs)
     {
-        return $this->only_strings($this->get_resource($attrs, "properties", $this->get_id($attrs, "orp")));
+        return $this->only_strings($this->get_resource($attrs, "properties", $this->get_id($attrs, "orp")), $additionalArgs);
     }
 
     function type_listing($attrs, $content, $additionalArgs)
     {
-        return $this->only_strings($this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]));
+        return $this->only_strings($this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]), $additionalArgs);
     }
 
     function type_widget_amenities_list($attrs, $content, $additionalArgs)
@@ -202,7 +204,34 @@ class OwnerRez_ShortCodes {
             return $list;
         }
 
-        return "[Unsupported api version]";
+        return "[The current ownerrez api does not support type: widget_amenities_list]";
+    }
+
+    function type_widget_amenities_table($attrs, $content, $additionalArgs)
+    {
+        $listing = $this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]);
+
+        if (property_exists($listing, "amenities") && is_object($listing->amenities)) {
+            $table = "<table class='ownerrez-amenities-table'><tbody>";
+
+            foreach ($listing->amenities as $category => $amenities) {
+                $tr = "<tr><td class='ownerrez-amenities-table-category-name'>" . $this->camelToTitle(ucfirst($category)) .  "</td><td class='ownerrez-amenities-table-category-items'><ul class='ownerrez-amenities-table-list'>";
+
+                foreach ($amenities as $amenity) {
+                    $tr .= "<li class='ownerrez-amenities-table-list-item'>" . $this->camelToTitle(ucfirst($amenity->text)) . "</li>";
+                }
+
+                $tr .= "</ul></td>";
+
+                $table .= $tr;
+            }
+
+            $table .= "</tbody></table>";
+
+            return $table;
+        }
+
+        return "[The current ownerrez api does not support type: widget_amenities_table]";
     }
 
     private $photoCarouselEnqueued = false;
