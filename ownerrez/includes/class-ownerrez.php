@@ -142,6 +142,7 @@ class OwnerRez
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_settings');
 		$this->loader->add_action('admin_post_save_ownerrez_settings', $plugin_admin, 'menu_settings_save');
+        $this->loader->add_filter('plugin_action_links_ownerrez/ownerrez.php', $plugin_admin, 'plugin_links');
 
 		// define admin ajax end points
         $plugin_ajax = new OwnerRez_Ajax($this->get_ownerrez(), $this->get_version());
