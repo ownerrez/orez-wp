@@ -102,6 +102,16 @@ class OwnerRez_ShortCodes {
         return $titleStr;
     }
 
+    function only_strings($result)
+    {
+        if (is_string($result))
+            return $result;
+        elseif (is_array($result))
+            return join(", ", $result);
+        else
+            return "[Unknown]";
+    }
+
     function get_resource($attrs, $resourceName, $id = null, $action = null, $query = null, $verb = null, $body = null)
     {
         try {
@@ -164,12 +174,12 @@ class OwnerRez_ShortCodes {
 
     function type_property($attrs, $content, $additionalArgs)
     {
-        return $this->get_resource($attrs, "properties", $this->get_id($attrs, "orp"));
+        return $this->only_strings($this->get_resource($attrs, "properties", $this->get_id($attrs, "orp")));
     }
 
     function type_listing($attrs, $content, $additionalArgs)
     {
-        return $this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]);
+        return $this->only_strings($this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]));
     }
 
     function type_widget_amenities_list($attrs, $content, $additionalArgs)
