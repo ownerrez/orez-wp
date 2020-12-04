@@ -93,6 +93,11 @@ function run_ownerrez()
         require plugin_dir_path(__FILE__) . 'lib/autoload.php';
     }
 
+    if (strpos(plugin_dir_url(__FILE__), 'D:') > -1) # looks like we're using symbolic links
+        define("OWNERREZ_ROOT", WP_CONTENT_URL . '/plugins/ownerrez');
+    else
+        define("OWNERREZ_ROOT", plugin_dir_url(__FILE__));
+
 	$plugin = new OwnerRez();
 	$plugin->run();
 }

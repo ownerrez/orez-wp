@@ -91,7 +91,7 @@ class OwnerRez_Ajax
 
         try {
             $response = $this->api->send_request($get_resource, $verb, $action, $call['id'], $call['query'], $call['body']);
-            echo json_encode(['status' => 'success', 'response' => json_decode($response)]);
+            echo json_encode(['status' => 'success', 'response' => $response]);
         }
         catch (\GuzzleHttp\Exception\ServerException $ex) {
             echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);

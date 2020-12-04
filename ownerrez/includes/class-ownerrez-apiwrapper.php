@@ -40,8 +40,20 @@ class OwnerRez_ApiWrapper
 
         if (!is_string($r)) {
 
-            #todo: cache response if cachable
-            $response = $r->request($verb, $action, $id, $query, $body);
+            if (strtolower($verb) == "get") {
+                $cacheKey = $this->get_cachekey($resourceName, $verb, $action, $id, $query);
+
+                $response = get_transient($cacheKey);
+
+                if ($response === false) {
+                    $response = json_decode($r->request($verb, $action, (int)$id, $query, $body));
+
+                    set_transient($cacheKey, $response, 3600 * 1);
+                }
+            }
+            else {
+                $response = json_decode($r->request($verb, $action, (int)$id, $query, $body));
+            }
 
             return $response;
         }
@@ -49,4 +61,24 @@ class OwnerRez_ApiWrapper
             throw new Exception($r);
         }
     }
+
+    function get_cachekey($resourceName, $verb, $action, $id, $query)
+    {
+        $key = "orapi." . strtolower($resourceName);
+
+        if ($id != null && strlen($id) > 0)
+            $key .= "." . strtolower($id);
+
+        if ($action != null && strlen($action) > 0)
+            $key .= "." . strtolower($action);
+
+        if ($query != null && is_array($query))
+            $key .= "." . join("&", $query);
+
+        if (strlen($key) > 40)
+            return substr($key, 0, 40);
+        else
+            return $key;
+    }
+
 }
