@@ -165,6 +165,7 @@ class OwnerRez
 
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+		$this->loader->add_action('parse_request', $plugin_public, 'webhook');
 
 		$plugin_shortcodes = new OwnerRez_ShortCodes($this->get_ownerrez(), $this->get_version());
 

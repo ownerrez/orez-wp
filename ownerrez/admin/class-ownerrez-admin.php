@@ -103,9 +103,15 @@ class OwnerRez_Admin
 		$username = (!empty($_POST["ownerrez_username"])) ? $_POST["ownerrez_username"] : NULL;
 		$token = (!empty($_POST["ownerrez_token"])) ? $_POST["ownerrez_token"] : NULL;
 
+		$webhookUrl = wp_guess_url() . "/ownerrez";
+		$webhookToken = get_option("ownerrez_webhookToken");
+
+		if ($webhookToken === false)
+		    $webhookToken = wp_generate_password(20, false);
+
 		// test creds
         $client = new OwnerRez\Api\Client($username, $token, $apiRoot);
-		$result = json_decode($client->externalSites()->register());
+		$result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
 
 		if (isset($result->id)) {
 			// save creds
@@ -114,6 +120,7 @@ class OwnerRez_Admin
 			update_option("ownerrez_token", $token, true);
 			update_option("ownerrez_externalSiteId", $result->id, true);
             update_option("ownerrez_externalSiteName", $result->name, true);
+            update_option("ownerrez_webhookToken", $webhookToken, true);
 
 			header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
 			exit;

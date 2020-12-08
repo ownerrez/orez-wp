@@ -98,4 +98,76 @@ class OwnerRez_Public {
 		wp_enqueue_script( $this->ownerrez, OWNERREZ_ROOT . '/public/js/ownerrez-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+	public function webhook() {
+        if(substr($_SERVER["REQUEST_URI"], 0, strlen('/ownerrez/')) === '/ownerrez/') {
+
+            $result = new stdClass();
+            $result->authorized = false;
+            $result->succeeded = false;
+
+            $token = $_SERVER['PHP_AUTH_PW'];
+            $expected = get_option('ownerrez_webhookToken', null);
+
+            // verify username and token
+            if (!isset($_SERVER['PHP_AUTH_PW']) || !hash_equals($expected, $token)) {
+                header('WWW-Authenticate: Basic');
+                header('HTTP/1.0 401 Unauthorized');
+            }
+            else {
+                $result->authorized = true;
+
+                $webhook = trim(preg_split("/ownerrez/", $_SERVER["REQUEST_URI"])[1], " \t\r\n/");
+
+                try {
+                    if ($webhook === "clear-transients") {
+                        $this->clear_transients();
+                        $result->succeeded = true;
+                    }
+                    else {
+                        $result->exception = "Unrecognized webhook name: " . $webhook;
+                    }
+                }
+                catch (Exception $ex) {
+                    $result->exception = $ex->getMessage();
+                }
+            }
+
+            echo json_encode($result);
+            exit();
+        }
+    }
+
+    function clear_transients()
+    {
+        foreach ( $this->get_transient_keys_with_prefix( "orapi." ) as $key ) {
+            delete_transient( $key );
+        }
+    }
+
+    /**
+     * Gets all transient keys in the database with a specific prefix.
+     *
+     * Note that this doesn't work for sites that use a persistent object
+     * cache, since in that case, transients are stored in memory.
+     *
+     * @param string $prefix Prefix to search for.
+     * @return array Transient keys with prefix, or empty array on error.
+     */
+    function get_transient_keys_with_prefix( $prefix ) {
+        global $wpdb;
+
+        $prefix = $wpdb->esc_like( '_transient_' . $prefix );
+        $sql = "SELECT `option_name` FROM $wpdb->options WHERE `option_name` LIKE '%s'";
+        $keys = $wpdb->get_results( $wpdb->prepare( $sql, $prefix . '%' ), ARRAY_A );
+
+        if ( is_wp_error( $keys ) ) {
+            return [];
+        }
+
+        return array_map( function( $key ) {
+            // Remove '_transient_' from the option name.
+            return ltrim( $key['option_name'], '_transient_' );
+        }, $keys );
+    }
 }
