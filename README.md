@@ -38,7 +38,7 @@ The following is a current list of supported values for `type`:
   Parameters:  
   - `id` (required) : The property ID
 - `widget_amenities_list` : Render a bullet list of call-out amenities for a single property.  
-  Required parameters:  
+  Parameters:  
   - `id` (required) : The property ID
 
 
