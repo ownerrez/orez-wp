@@ -49,6 +49,9 @@ This is a current list of supported values for `type` for rendering predefined h
 - `widget_amenities_list` : Render a bullet list of call-out amenities for a single property.\
   Parameters:
   - `id` (required) : The property ID
+- `widget_amenities_table` : Render a tabular list of all amenities for a single property.\
+  Parameters:
+  - `id` (required) : The property ID
 
 ### AJAX
 
