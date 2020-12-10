@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 5.4.2
-Stable tag: trunk
+Stable tag: 1.0.3
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 
@@ -33,8 +33,8 @@ Visit https://github.com/ownerrez/orez-wp for more information on using this plu
 
 == Changelog ==
 
-= 1.0.2 =
+= 1.0.3 =
+
+Added default widget styling
 
 == Upgrade Notice ==
-
-= 1.0.2 =

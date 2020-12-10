@@ -1,8 +1,3 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
-
 .loading-slider {
     padding: 0;
     padding-bottom: 70% /* a bit extra for the thumbs */
@@ -91,21 +86,21 @@
 }
 
 .lSAction a.lSPrev {
-    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+    /*background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);*/
+    /*background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);*/
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);*/
+    /*background-repeat: repeat-x;*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);*/
 }
 
 .lSAction a.lSNext {
     left: auto;
     right: 0;
-    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+    /*background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);*/
+    /*background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);*/
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);*/
+    /*background-repeat: repeat-x;*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);*/
 }
 
 .lSAction a:hover,
@@ -160,4 +155,30 @@
 
 .lSSlideWrapper.usingCss.on {
     height: auto !important;
+}
+
+.ownerrez-amenities-list {
+}
+.ownerrez-amenities-list>li {
+    list-style: none;
+    margin: 0 20px 0 0;
+    display: inline-block;
+}
+.ownerrez-amenities-table {
+    border: none;
+}
+.ownerrez-amenities-table-category-name {
+    font-weight: bold;
+    vertical-align: top;
+    text-align: right;
+    min-width: 150px;
+}
+.ownerrez-amenities-table-list {
+    margin: 0;
+    padding: 0;
+}
+.ownerrez-amenities-table-list-item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
