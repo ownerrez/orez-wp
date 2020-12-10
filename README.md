@@ -12,14 +12,35 @@ After registration, you can use this plugin to insert shortcodes for your proper
 
 ### Shortcodes
 
-All ownerrez shortcodes start with `ownerrez` and require a `type` parameter. The following is a current list of supported types:
+All ownerrez shortcodes start with `ownerrez` and require a `type` parameter. Some `type` values may additionally require other parameters such as `id` or `field` to further control what is rendered to your page.
 
-- `property` : renders property details. Required parameters: `id`, `field` (string) or `json` (boolean)
-- `listing` : renders listing details. Required parameters: `id`, `field` (string) or `json` (boolean)
-- `widget_photo_carousel` : renders a photo carousel for a single property. Required parameters: `id`
-- `widget_amenities_list` : renders a bullet list of call-out amenities for a single property. Required parameters: `id`
+The following is an example shortcode: 
 
-Example: `[ownerrez type="property" id="orp12345" field="name"]`
+```
+[ownerrez type="property" id="orp12345" field="name"]
+```
+
+#### Type
+
+The following is a current list of supported values for `type`:
+
+- `property` : Render property details.  
+  Parameters:  
+  - `id` (required) : The property ID
+  - `field` (required, unless `json` is set to `true`) : The details you would like to render (For a complete list of available fields, go to: )
+  - `json` (optional) : If `true` is used, `field` is not required, and the entire set of available property details will be rendered as a JSON object.
+- `listing` : Render listing details.  
+  Parameters:  
+  - `id` (required) : The property ID
+  - `field` (required, unless `json` is set to `true`) : The details you would like to render (For a complete list of available fields, go to: )
+  - `json` (optional) : If `true` is used, `field` is not required, and the entire set of available property listing details will be rendered as a JSON object. 
+- `widget_photo_carousel` : Render a photo carousel for a single property.  
+  Parameters:  
+  - `id` (required) : The property ID
+- `widget_amenities_list` : Render a bullet list of call-out amenities for a single property.  
+  Required parameters:  
+  - `id` (required) : The property ID
+
 
 ### AJAX
 
