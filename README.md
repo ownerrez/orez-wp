@@ -20,20 +20,29 @@ The following is an example shortcode:
 [ownerrez type="property" id="orp12345" field="name"]
 ```
 
-#### Type
+#### Field Types
 
-The following is a current list of supported values for `type`:
+This is a current list of supported values for `type` for rendering specific details from your OwnerRez properties:
 
-- `property` : Render property details.  
+- `property` : Render property details for a single property.  
   Parameters:  
   - `id` (required) : The property ID
-  - `field` (required, unless `json` is set to `true`) : The details you would like to render (For a complete list of available fields, go to: )
+  - `field` (required, unless `json` is set to `true`) : The details you would like to render  
+    - Common values include: `name`, `externalName`, `maxGuests`, `maxPets`, `minNights`, `maxNights`, `checkIn`, `checkOut`
+    - For a complete list of available fields, go to: coming soon 
   - `json` (optional) : If `true` is used, `field` is not required, and the entire set of available property details will be rendered as a JSON object.
-- `listing` : Render listing details.  
+- `listing` : Render listing details for a single property.  
   Parameters:  
   - `id` (required) : The property ID
-  - `field` (required, unless `json` is set to `true`) : The details you would like to render (For a complete list of available fields, go to: )
+  - `field` (required, unless `json` is set to `true`) : The details you would like to render  
+    - Common values include: `description`, `shortDescription`, `headline`, `latitude`, `longitude`, `bedroomCount`, `bathroomCount`, `sleepsMax`, `occupancyMax`, `nightlyRateMin`, `nightlyRateMax`
+    - For a complete list of available fields, go to: coming soon
   - `json` (optional) : If `true` is used, `field` is not required, and the entire set of available property listing details will be rendered as a JSON object. 
+  
+#### Widget Types
+
+This is a current list of supported values for `type` for rendering predefined html layouts for your OwnerRez properties:
+
 - `widget_photo_carousel` : Render a photo carousel for a single property.  
   Parameters:  
   - `id` (required) : The property ID
