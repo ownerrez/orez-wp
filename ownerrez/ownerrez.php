@@ -14,13 +14,13 @@
  *
  * @wordpress-plugin
  * Plugin Name:       OwnerRez
- * Plugin URI:        http://ownerrez.com/support/wordpress
+ * Plugin URI:        https://www.ownerreservations.com/support/wordpress
  * Description:       Integrate your OwnerRez account with your wordpress site.
- * Version:           1.0.0
+ * Version:           1.0.3
  * Author:            OwnerRez, Inc.
- * Author URI:        http://ownerrez.com/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Author URI:        https://www.ownerreservations.com/
+ * License:           MIT
+ * License URI:       https://github.com/ownerrez/orez-wp/blob/master/LICENSE
  * Text Domain:       ownerrez
  * Domain Path:       /languages
  */
