@@ -16,7 +16,7 @@
  * Plugin Name:       OwnerRez
  * Plugin URI:        https://www.ownerreservations.com/support/wordpress
  * Description:       Integrate your OwnerRez account with your wordpress site.
- * Version:           1.0.3
+ * Version:           1.0.4
  * Author:            OwnerRez, Inc.
  * Author URI:        https://www.ownerreservations.com/
  * License:           MIT
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('OWNERREZ_VERSION', '1.0.3');
+define('OWNERREZ_VERSION', '1.0.4');
 
 /**
  * The code that runs during plugin activation.
@@ -92,11 +92,6 @@ function run_ownerrez()
     if ( is_readable( plugin_dir_path(__FILE__) . 'lib/autoload.php' ) ) {
         require plugin_dir_path(__FILE__) . 'lib/autoload.php';
     }
-
-    if (strpos(plugin_dir_url(__FILE__), 'D:') > -1) # looks like we're using symbolic links
-        define("OWNERREZ_ROOT", WP_CONTENT_URL . '/plugins/ownerrez');
-    else
-        define("OWNERREZ_ROOT", plugin_dir_url(__FILE__));
 
 	$plugin = new OwnerRez();
 	$plugin->run();

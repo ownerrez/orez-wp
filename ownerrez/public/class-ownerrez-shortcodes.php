@@ -242,7 +242,7 @@ class OwnerRez_ShortCodes {
             wp_enqueue_style("ownerrez-lgstyle1", "https://cdn.orez.io/hc/content/lightslider.min.css", null, $this->version);
             wp_enqueue_style("ownerrez-lgstyle2", "https://cdn.orez.io/hc/content/lightgallery.min.css", null, $this->version);
             wp_enqueue_script("ownerrez-lgscript", "https://cdn.orez.io/hc/scripts/lgbundle.min.js", array( 'jquery' ), $this->version);
-            wp_enqueue_script("ownerrez-photo-carousel", OWNERREZ_ROOT . '/public/js/ownerrez-photo-carousel.js', array( 'jquery' ), $this->version);
+            wp_enqueue_script("ownerrez-photo-carousel.js", plugins_url('/ownerrez/public/js/ownerrez-photo-carousel.js'), array( 'jquery' ), $this->version);
 
             $this->photoCarouselEnqueued = true;
         }

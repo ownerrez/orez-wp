@@ -73,7 +73,7 @@ class OwnerRez_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->ownerrez, OWNERREZ_ROOT . '/public/css/ownerrez-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->ownerrez, plugins_url('/ownerrez/public/css/ownerrez-public.css'), array(), $this->version, 'all' );
 	}
 
 	/**
@@ -95,7 +95,7 @@ class OwnerRez_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->ownerrez, OWNERREZ_ROOT . '/public/js/ownerrez-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( "ownerrez-public.js", plugins_url('/ownerrez/public/js/ownerrez-public.js'), array( 'jquery' ), $this->version, false );
 
 	}
 

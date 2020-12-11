@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 5.6
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 
