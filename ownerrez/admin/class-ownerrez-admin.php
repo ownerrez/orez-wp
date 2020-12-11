@@ -86,10 +86,10 @@ class OwnerRez_Admin
 			function () {
 				include plugin_dir_path(dirname(__FILE__)) . "admin/partials/ownerrez-admin-display.php";
 
-                $apiRoot = (!empty($_POST["ownerrez_apiRoot"])) ? $_POST["ownerrez_apiRoot"] : get_option('ownerrez_apiRoot', self::DEFAULT_API_ROOT);
-				$username = (!empty($_POST["ownerrez_username"])) ? $_POST["ownerrez_username"] : get_option('ownerrez_username');
-				$token = (!empty($_POST["ownerrez_token"])) ? $_POST["ownerrez_token"] : get_option('ownerrez_token');
-				$status = (!empty($_GET["status"])) ? $_GET["status"] : NULL;
+                $apiRoot = !empty($_POST["ownerrez_apiRoot"]) ? esc_url_raw($_POST["ownerrez_apiRoot"], ["http", "https"]) : get_option('ownerrez_apiRoot', self::DEFAULT_API_ROOT);
+				$username = !empty($_POST["ownerrez_username"]) ? sanitize_email($_POST["ownerrez_username"]) : get_option('ownerrez_username');
+				$token = !empty($_POST["ownerrez_token"]) ? sanitize_text_field($_POST["ownerrez_token"]) : get_option('ownerrez_token');
+				$status = !empty($_GET["status"]) ? sanitize_text_field($_GET["status"]) : NULL;
 
 				orez_render_admin($username, $token, $status, $apiRoot, get_option('ownerrez_externalSiteName'));
 			}
@@ -99,9 +99,9 @@ class OwnerRez_Admin
 	public function menu_settings_save()
 	{
 		// Get the options that were sent
-        $apiRoot = (!empty($_POST["ownerrez_apiRoot"])) ? $_POST["ownerrez_apiRoot"] : self::DEFAULT_API_ROOT;
-		$username = (!empty($_POST["ownerrez_username"])) ? $_POST["ownerrez_username"] : NULL;
-		$token = (!empty($_POST["ownerrez_token"])) ? $_POST["ownerrez_token"] : NULL;
+        $apiRoot = !empty($_POST["ownerrez_apiRoot"]) ? esc_url_raw($_POST["ownerrez_apiRoot"], ["http", "https"]) : self::DEFAULT_API_ROOT;
+		$username = !empty($_POST["ownerrez_username"]) ? sanitize_email($_POST["ownerrez_username"]) : NULL;
+		$token = !empty($_POST["ownerrez_token"]) ? sanitize_text_field($_POST["ownerrez_token"]) : NULL;
 
 		$webhookUrl = wp_guess_url() . "/ownerrez";
 		$webhookToken = get_option("ownerrez_webhookToken");
@@ -109,25 +109,34 @@ class OwnerRez_Admin
 		if ($webhookToken === false)
 		    $webhookToken = wp_generate_password(20, false);
 
-		// test creds
-        $client = new OwnerRez\Api\Client($username, $token, $apiRoot);
-		$result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
+        try {
+            // test creds
+            $client = new OwnerRez\Api\Client($username, $token, $apiRoot);
+            $result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
 
-		if (isset($result->id)) {
-			// save creds
-            update_option("ownerrez_apiRoot", $apiRoot, true);
-			update_option("ownerrez_username", $username, true);
-			update_option("ownerrez_token", $token, true);
-			update_option("ownerrez_externalSiteId", $result->id, true);
-            update_option("ownerrez_externalSiteName", $result->name, true);
-            update_option("ownerrez_webhookToken", $webhookToken, true);
+            if (isset($result->id)) {
+                // save creds
+                update_option("ownerrez_apiRoot", $apiRoot, true);
+                update_option("ownerrez_username", $username, true);
+                update_option("ownerrez_token", $token, true);
+                update_option("ownerrez_externalSiteId", $result->id, true);
+                update_option("ownerrez_externalSiteName", $result->name, true);
+                update_option("ownerrez_webhookToken", $webhookToken, true);
 
-			header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
-			exit;
-		} else {
-			header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
-			exit;
-		}
+                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
+                exit;
+            } else {
+                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
+                exit;
+            }
+        }
+        catch (Exception $ex)
+        {
+            error_log($ex->getMessage());
+
+            header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
+            exit;
+        }
 	}
 
     public function plugin_links($links)

@@ -75,7 +75,7 @@ class OwnerRez_Ajax
 
     private function execute_request($allowedRequestKeys)
     {
-        $call = $_POST['or_call'];
+        $call = json_decode($_POST['or_call']);
         $verb = !empty($call['verb']) ? $call['verb'] : 'get';
         $get_resource = $call['resource'];
         $action = $call['action'];

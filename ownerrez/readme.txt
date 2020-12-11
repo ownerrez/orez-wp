@@ -2,7 +2,7 @@
 Contributors: ownerrez
 Tags:
 Requires at least: 5.4
-Tested up to: 5.4.2
+Tested up to: 5.6
 Stable tag: 1.0.3
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
@@ -13,11 +13,16 @@ The official WordPress plugin for the OwnerRez API.
 
 # OwnerRez API WordPress Plugin
 
-The official WordPress plugin for the OwnerRez API.
+The official WordPress plugin for the OwnerRez API. Visit https://github.com/ownerrez/orez-wp for more information on using this plugin.
+
+This plugin provides interconnectivity between your OwnerRez account and your WordPress website. This plugin will communicate with the OwnerRez API hosted by https://www.ownerreservations.com.
+
+The OwnerRez terms of service and privacy policy govern our usage of data collected through this plugin.
+
+https://www.ownerreservations.com/support/articles/privacy-security-terms-of-service
+https://www.ownerreservations.com/support/articles/privacy-security-privacy-policy
 
 Please submit questions or problems to help@ownerreservations.com
-
-Visit https://github.com/ownerrez/orez-wp for more information on using this plugin.
 
 == Installation ==
 
