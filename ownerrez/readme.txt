@@ -6,7 +6,7 @@ Tested up to: 5.6
 Stable tag: 1.0.4
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
-Tags: vacation rentals
+Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
 
 The official WordPress plugin for the OwnerRez API.
 
