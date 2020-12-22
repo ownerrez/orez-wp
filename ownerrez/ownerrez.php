@@ -16,7 +16,7 @@
  * Plugin Name:       OwnerRez
  * Plugin URI:        https://www.ownerreservations.com/support/wordpress
  * Description:       Integrate your OwnerRez account with your wordpress site.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            OwnerRez, Inc.
  * Author URI:        https://www.ownerreservations.com/
  * License:           MIT
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('OWNERREZ_VERSION', '1.0.4');
+define('OWNERREZ_VERSION', '1.0.5');
 
 /**
  * The code that runs during plugin activation.
