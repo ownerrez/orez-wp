@@ -62,7 +62,7 @@ class OwnerRez_Admin
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->ownerrez, plugin_dir_url(__FILE__) . 'css/ownerrez-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->ownerrez, plugins_url('/ownerrez/admin/css/ownerrez-admin.css'), array(), $this->version, 'all');
 	}
 
 	/**
@@ -72,7 +72,7 @@ class OwnerRez_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->ownerrez, plugin_dir_url(__FILE__) . 'js/ownerrez-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->ownerrez, plugins_url('/ownerrez/admin/js/ownerrez-admin.js'), array('jquery'), $this->version, false);
 	}
 
 	public function menu_settings()

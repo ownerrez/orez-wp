@@ -45,18 +45,11 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
             <table class="form-table" role="presentation">
                 <tr>
                     <th scope="row">
-                        <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
-                    </th>
-                    <td>
-                        <input id="ownerrez_apiRoot" class="regular-text" type="text" name="ownerrez_apiRoot" value="<?php echo $apiRoot; ?>" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
                         <label for="ownerrez_username"><?php _e("OwnerRez Username (email):", "ownerrez"); ?></label>
                     </th>
                     <td>
                         <input id="ownerrez_username" class="regular-text" type="text" name="ownerrez_username" value="<?php echo $username; ?>" />
+                        <p class="description"><?php _e("This is the email address of the primary account holder.", "ownerrez"); ?></p>
                     </td>
                 </tr>
                 <tr>
@@ -65,7 +58,7 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                     </th>
                     <td>
                         <input id="ownerrez_token" class="regular-text" type="password" name="ownerrez_token" value="<?php echo $token; ?>" />
-                        <p class="description"><?php _e("You can generate an access token in OwnerRez under Settings -> External Websites.", "ownerrez"); ?></p>
+                        <p class="description"><?php _e("You can generate an access token in OwnerRez under Settings -> WordPress Plugin.", "ownerrez"); ?></p>
                     </td>
                 </tr>
                 <?php if ($externalSiteName) { ?>
@@ -78,6 +71,16 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                         </td>
                     </tr>
                 <?php } ?>
+                <tr>
+                    <th scope="row">
+                        <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
+                    </th>
+                    <td>
+                        <input id="ownerrez_apiRoot" class="regular-text" type="text" name="ownerrez_apiRoot" value="<?php echo $apiRoot; ?>" />
+                        <p class="description"><?php _e("This is for advanced usage. You should not need to change this option.", "ownerrez"); ?></p>
+
+                    </td>
+                </tr>
             </table>
 
             <p class="submit">

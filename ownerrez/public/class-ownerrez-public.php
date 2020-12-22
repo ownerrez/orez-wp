@@ -99,42 +99,38 @@ class OwnerRez_Public {
 
 	}
 
-	public function webhook() {
+    public function webhook() {
         if(substr($_SERVER["REQUEST_URI"], 0, strlen('/ownerrez/')) === '/ownerrez/') {
+            $webhook = trim(preg_split("/ownerrez/", $_SERVER["REQUEST_URI"])[1], " \t\r\n/");
 
-            $result = new stdClass();
-            $result->authorized = false;
-            $result->succeeded = false;
+            if ($webhook === "clear-transients") {
+                $result = new stdClass();
+                $result->authorized = false;
+                $result->succeeded = false;
 
-            $token = $_SERVER['PHP_AUTH_PW'];
-            $expected = get_option('ownerrez_webhookToken', null);
+                $token = $_SERVER['PHP_AUTH_PW'];
+                $expected = get_option('ownerrez_webhookToken', null);
 
-            // verify username and token
-            if (!isset($_SERVER['PHP_AUTH_PW']) || !hash_equals($expected, $token)) {
-                header('WWW-Authenticate: Basic');
-                header('HTTP/1.0 401 Unauthorized');
-            }
-            else {
-                $result->authorized = true;
+                // verify username and token
+                if (!isset($_SERVER['PHP_AUTH_PW']) || !hash_equals($expected, $token)) {
+                    header('WWW-Authenticate: Basic');
+                    header('HTTP/1.0 401 Unauthorized');
+                }
+                else {
+                    $result->authorized = true;
 
-                $webhook = trim(preg_split("/ownerrez/", $_SERVER["REQUEST_URI"])[1], " \t\r\n/");
-
-                try {
-                    if ($webhook === "clear-transients") {
+                    try {
                         $this->clear_transients();
                         $result->succeeded = true;
                     }
-                    else {
-                        $result->exception = "Unrecognized webhook name: " . $webhook;
+                    catch (Exception $ex) {
+                        $result->exception = $ex->getMessage();
                     }
                 }
-                catch (Exception $ex) {
-                    $result->exception = $ex->getMessage();
-                }
-            }
 
-            echo json_encode($result);
-            exit();
+                echo json_encode($result);
+                exit();
+            }
         }
     }
 
