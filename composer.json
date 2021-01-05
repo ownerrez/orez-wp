@@ -14,6 +14,6 @@
         "ownerrez/orez-api": "dev-master"
     },
     "config": {
-        "vendor-dir": "lib"
+        "vendor-dir": "ownerrez/lib"
     }
 }

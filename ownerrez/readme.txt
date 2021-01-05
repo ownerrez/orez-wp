@@ -31,22 +31,13 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
-== Frequently Asked Questions ==
-
-
-== Screenshots ==
-
-
 == Changelog ==
-
-= 1.0.5 =
-
-Fixed a bug that occurred when Wordpress was hosted in a subfolder named /ownerrez
-
 = 1.1.0 =
-
 - Added two new widget shortcodes.
 - **Breaking** Modified css classes on existing widget shortcodes.
+
+= 1.0.5 =
+Fixed a bug that occurred when Wordpress was hosted in a subfolder named /ownerrez
 
 == Upgrade Notice ==
 

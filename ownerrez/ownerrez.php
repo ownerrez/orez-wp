@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       OwnerRez
  * Plugin URI:        https://www.ownerreservations.com/support/wordpress
- * Description:       Integrate your OwnerRez account with your wordpress site.
+ * Description:       The official WordPress plugin for the OwnerRez API.
  * Version:           1.1.0
  * Author:            OwnerRez, Inc.
  * Author URI:        https://www.ownerreservations.com/
