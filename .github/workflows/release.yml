@@ -1,9 +1,8 @@
 name: Release
 
 on:
-  push:
-    tags:
-    - "*"
+  release:
+    types: [published]
 
 jobs:
   tag:
@@ -18,8 +17,19 @@ jobs:
         dev: no
     - name: WordPress Plugin Deploy
       uses: Lewiscowles1986/action-wordpress-plugin-deploy@feat/add-custom-workspace
+#      with:
+#        generate-zip: true
       env:
         WORKSPACE_DIR: ownerrez
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SLUG: ownerrez
+#    - name: Upload release asset
+#      uses: actions/upload-release-asset@v1
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        upload_url: ${{ github.event.release.upload_url }}
+#        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
+#        asset_name: ownerrez.zip
+#        asset_content_type: application/zip
