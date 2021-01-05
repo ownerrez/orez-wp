@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de5d732b2dc400ccdc75dd3987f8bb3f",
+    "content-hash": "57398abd97fc36f58620a8dd99b5c192",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -84,6 +84,10 @@
                 "rest",
                 "web service"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/guzzle/issues",
+                "source": "https://github.com/guzzle/guzzle/tree/7.2.0"
+            },
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -153,6 +157,10 @@
             "keywords": [
                 "promise"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/promises/issues",
+                "source": "https://github.com/guzzle/promises/tree/1.4.0"
+            },
             "time": "2020-09-30T07:37:28+00:00"
         },
         {
@@ -224,20 +232,24 @@
                 "uri",
                 "url"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/psr7/issues",
+                "source": "https://github.com/guzzle/psr7/tree/1.7.0"
+            },
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
             "name": "ownerrez/orez-api",
-            "version": "dev-master",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ownerrez/orez-api-php.git",
-                "reference": "e765660bb12f0cb719f7a489be15c4e2ab3de4bf"
+                "reference": "79a97a740b55d304ea716afa5301f164b051cc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/e765660bb12f0cb719f7a489be15c4e2ab3de4bf",
-                "reference": "e765660bb12f0cb719f7a489be15c4e2ab3de4bf",
+                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/79a97a740b55d304ea716afa5301f164b051cc10",
+                "reference": "79a97a740b55d304ea716afa5301f164b051cc10",
                 "shasum": ""
             },
             "require": {
@@ -264,7 +276,11 @@
                 }
             ],
             "description": "Official PHP wrapper for the OwnerRez API",
-            "time": "2020-12-08T21:19:12+00:00"
+            "support": {
+                "issues": "https://github.com/ownerrez/orez-api-php/issues",
+                "source": "https://github.com/ownerrez/orez-api-php/tree/v1.0.3"
+            },
+            "time": "2021-01-05T17:39:51+00:00"
         },
         {
             "name": "psr/http-client",
@@ -313,6 +329,9 @@
                 "psr",
                 "psr-18"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/master"
+            },
             "time": "2020-06-29T06:28:15+00:00"
         },
         {
@@ -363,6 +382,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -403,18 +425,20 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
             "time": "2019-03-08T08:55:37+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "ownerrez/orez-api": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

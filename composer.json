@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "ownerrez/orez-api": "dev-master"
+        "ownerrez/orez-api": "1.0.*"
     },
     "config": {
         "vendor-dir": "ownerrez/lib"
