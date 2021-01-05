@@ -15,7 +15,7 @@ jobs:
       id: composer
       with:
         dev: no
-    - name: Commit Vendor folder (but don't push)
+    - name: Commit lib folder (but don't push)
       run: |
         git config --global user.email "dev+codebot@ownerreservations.com" &&
         git config --global user.name "Codebot on GitHub" &&
@@ -25,19 +25,19 @@ jobs:
         git commit -m "Dependencies"
     - name: WordPress Plugin Deploy
       uses: Lewiscowles1986/action-wordpress-plugin-deploy@feat/add-custom-workspace
-#      with:
-#        generate-zip: true
+      with:
+        generate-zip: true
       env:
         WORKSPACE_DIR: ownerrez
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SLUG: ownerrez
-#    - name: Upload release asset
-#      uses: actions/upload-release-asset@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        upload_url: ${{ github.event.release.upload_url }}
-#        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
-#        asset_name: ownerrez.zip
-#        asset_content_type: application/zip
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
+        asset_name: ownerrez.zip
+        asset_content_type: application/zip
