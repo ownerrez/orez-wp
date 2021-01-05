@@ -13,8 +13,6 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v2
       id: composer
-      with:
-        dev: no
     - name: Commit lib folder (but don't push)
       run: |
         git config --global user.email "dev+codebot@ownerreservations.com" &&
