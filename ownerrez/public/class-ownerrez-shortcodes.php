@@ -114,6 +114,20 @@ class OwnerRez_ShortCodes {
             return "[Unknown]";
     }
 
+    function filter_array ($array, $callback, $args){
+        if(is_array($array) && count($array)>0)
+        {
+            foreach(array_keys($array) as $key){
+                $temp[$key] = $array[$key];
+
+                if ($callback($temp[$key], $args)){
+                    $newarray[count($newarray ?? [])] = $array[$key];
+                }
+            }
+        }
+        return $newarray ?? null;
+    }
+
     function get_resource($attrs, $resourceName, $id = null, $action = null, $query = null, $verb = null, $body = null)
     {
         try {
@@ -189,7 +203,7 @@ class OwnerRez_ShortCodes {
         $listing = $this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary");
 
         if (property_exists($listing, "callOutAmenities")) {
-            $list = "<ul class='ownerrez-amenities-list'>";
+            $list = "<ul class='ownerrez-callout-amenities-list'>";
 
             foreach ($listing->callOutAmenities as &$amenity) {
                 $title = "";
@@ -215,14 +229,9 @@ class OwnerRez_ShortCodes {
             $table = "<table class='ownerrez-amenities-table'><tbody>";
 
             foreach ($listing->amenities as $category => $amenities) {
-                $tr = "<tr><td class='ownerrez-amenities-table-category-name'>" . $this->camelToTitle(ucfirst($category)) .  "</td><td class='ownerrez-amenities-table-category-items'><ul class='ownerrez-amenities-table-list'>";
-
-                foreach ($amenities as $amenity) {
-                    $tr .= "<li class='ownerrez-amenities-table-list-item'>" . $this->camelToTitle(ucfirst($amenity->text)) . "</li>";
-                }
-
-                $tr .= "</ul></td>";
-
+                $tr = "<tr><th class='ownerrez-amenities-table-category-name'>" . $this->camelToTitle(ucfirst($category)) . "</th><td class='ownerrez-amenities-table-category-items'>";
+                $tr .= $this->get_amenities_list($amenities);
+                $tr .= "</td></tr>";
                 $table .= $tr;
             }
 
@@ -232,6 +241,80 @@ class OwnerRez_ShortCodes {
         }
 
         return "[The current ownerrez api does not support type: widget_amenities_table]";
+    }
+
+    function type_widget_amenities_category($attrs, $content, $additionalArgs)
+    {
+        $category = null;
+        if (array_key_exists("category", $additionalArgs) && is_string($additionalArgs["category"]))
+            $category = strtolower($additionalArgs["category"]);
+        else
+            return '[The "category" attribute is required for this shortcode.]';
+
+        $listing = $this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]);
+
+        if (property_exists($listing, "amenityCategories") && is_array($listing->amenityCategories))
+        {
+            $match = $this->filter_array($listing->amenityCategories, function ($x, $args) {
+                return !strcasecmp($args, $x->type);
+            }, $category);
+
+            if (!empty($match)) {
+                return $this->get_amenities_list($match[0]->amenities);
+            }
+            else {
+                return "";
+            }
+        }
+
+        return "[The current ownerrez api does not support type: widget_amenities_category]";
+    }
+
+    function type_widget_listing_details($attrs, $content, $additionalArgs)
+    {
+        $listing = $this->get_resource($attrs, "listings", $this->get_id($attrs, "orp"), "summary", ["includeDescriptions"=>"true", "includeAmenities"=>"true"]);
+
+        if (property_exists($listing, "amenityCategories") && is_array($listing->amenityCategories))
+        {
+            $output = "<div class='ownerrez-listing-details'>";
+
+            if (property_exists($listing, "amenitiesAdditionalInfo"))
+                $output .= "<div class='ownerrez-listing-details-additional-info'>" . $listing->amenitiesAdditionalInfo . "</div>";
+
+            $output .= "<table class='ownerrez-amenities-table'>";
+
+            foreach ($listing->amenityCategories as $category)
+            {
+                $output .= "<tr><th class='ownerrez-amenities-table-category-name'>" . $category->caption . "</th><td class='ownerrez-amenities-table-category-items'>";
+                $output .= $this->get_amenities_list($category->amenities);
+                $output .= "</td>";
+            }
+
+            return $output . "</table></div>";
+        }
+
+        return "[The current ownerrez api does not support type: widget_listing_details]";
+    }
+
+    /**
+     * @param $amenities
+     * @return string
+     */
+    public function get_amenities_list($amenities): string
+    {
+        $ul = "<ul class='ownerrez-amenities-list'>";
+
+        foreach ($amenities as $amenity) {
+            $ul .= "<li class='ownerrez-amenities-list-item'>" . $this->camelToTitle(ucfirst($amenity->text));
+            if (!empty($amenity->title)) {
+                $ul .= '<i class="fas fa-info-circle" title="' . $amenity->title . '"></i>';
+            }
+            $ul .= "</li>";
+        }
+
+        $ul .= "</ul>";
+
+        return $ul;
     }
 
     private $photoCarouselEnqueued = false;

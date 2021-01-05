@@ -41,7 +41,9 @@ This is a current list of supported values for `type` for rendering specific det
   
 #### Widgets
 
-This is a current list of supported values for `type` for rendering predefined html layouts for your OwnerRez properties:
+This is a current list of supported values for `type` for rendering predefined layouts for your OwnerRez properties. 
+Widget shortcodes render *lightly styled* HTML. Additional styling is commonly required. Some widgets include 
+FontAwesome icon markup for which we recommend the official [FontAwesome plugin](https://wordpress.org/plugins/font-awesome/).
 
 - `widget_photo_carousel` : Render a photo carousel for a single property.\
   Parameters:
@@ -49,13 +51,28 @@ This is a current list of supported values for `type` for rendering predefined h
 - `widget_amenities_list` : Render a bullet list of call-out amenities for a single property.\
   Parameters:
   - `id` (required) : The property ID
-- `widget_amenities_table` : Render a tabular list of all amenities for a single property.\
+- `widget_amenities_table` : Render a tabular list of all yes/no amenities for a single property.\
+  Parameters:
+  - `id` (required) : The property ID
+- `widget_amenities_category` : Render an unordered list for a single category of amenities for a single property.\
+  Parameters:
+  - `id` (required) : The property ID
+  - `category` (required) : The category to render\
+    Possible categories:
+    - `PropertyType`, `Accommodation`, `CheckInType`, `HouseRules`, `Bedrooms`, `Bathrooms`, 
+      `LocationTypeFeatures`, `PopularAmenitiesFeatures`, `KitchenFeatures`, `DiningFeatures`, `EntertainmentFeatures`, 
+      `PoolSpaFeatures`, `OutdoorFeatures`, `OtherServiceFeatures`, `ThemeFeatures`, `AttractionFeatures`, 
+      `SportFeatures`, `LeisureFeatures`, `LocalFeatures`, `SafetyFeatures`, `FamilyFeatures`, `ParkingFeatures`, 
+      `ListingExpectationFeatures`, `AccessibilityFeatures`
+- `widget_listing_details` : Render additional amenities information, and a tabular list of all categories available in 
+  the `widget_amenities_category` widget for a single property.\
   Parameters:
   - `id` (required) : The property ID
 
 ### AJAX
 
-API end points are accessible via admin ajax requests:
+API end points are accessible via admin ajax requests. This feature is currently under development. If you would like to
+use this feature, please [let us know](mailto:help@ownerreservations.com) about your use case. 
 
 ```$javascript
 var ownerrezRequest = { 

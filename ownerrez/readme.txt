@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 5.6
-Stable tag: 1.0.5
+Stable tag: 1.1.0
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -43,4 +43,11 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 
 Fixed a bug that occurred when Wordpress was hosted in a subfolder named /ownerrez
 
+= 1.1.0 =
+
+- Added two new widget shortcodes.
+- **Breaking** Modified css classes on existing widget shortcodes.
+
 == Upgrade Notice ==
+
+After upgrading to 1.1.0, please review any custom css you have added for OwnerRez widgets.
