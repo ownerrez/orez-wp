@@ -1,7 +1,6 @@
 name: Release
 
 on:
-  workflow_dispatch:
   push:
     tags:
     - "*"
@@ -17,18 +16,10 @@ jobs:
       id: composer
       with:
         dev: no
-#    - name: Commit Vendor folder (but don't push)
-#      run: |
-#        git config --global user.email "bot+github@ownerreservations.com" &&
-#        git config --global user.name "CD2 bot on GitHub" &&
-#        sed -e '/lib/ s/^#*/#/' -i .gitignore &&
-#        git add .gitignore &&
-#        git add -f vendor . &&
-#        git commit -m "Vendored dependencies"
-#    - name: WordPress Plugin Deploy
-#      uses: Lewiscowles1986/action-wordpress-plugin-deploy@feat/add-custom-workspace
-#      env:
-#        WORKSPACE_DIR: ownerrez
-#        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-#        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-#        SLUG: ownerrez
+    - name: WordPress Plugin Deploy
+      uses: Lewiscowles1986/action-wordpress-plugin-deploy@feat/add-custom-workspace
+      env:
+        WORKSPACE_DIR: ownerrez
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+        SLUG: ownerrez
