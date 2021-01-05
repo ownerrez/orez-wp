@@ -19,7 +19,7 @@ jobs:
       run: |
         git config --global user.email "dev+codebot@ownerreservations.com" &&
         git config --global user.name "Codebot on GitHub" &&
-        sed -e '/lib/ s/^#*/#/' -i .gitignore &&
+        sed 's/lib/ /' .gitignore &&
         git add .gitignore &&
         git add -f lib . &&
         git commit -m "Dependencies"
