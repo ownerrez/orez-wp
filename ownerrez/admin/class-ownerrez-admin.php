@@ -132,9 +132,14 @@ class OwnerRez_Admin
         }
         catch (Exception $ex)
         {
-            error_log($ex->getMessage());
+            if (WP_DEBUG === true) {
+                echo $ex->getMessage();
+            }
+            else {
+                error_log($ex->getMessage());
+                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
+            }
 
-            header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
             exit;
         }
 	}
