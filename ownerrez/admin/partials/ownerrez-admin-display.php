@@ -72,6 +72,11 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                     </tr>
                 <?php } ?>
                 <tr>
+                    <th colspan="2">
+                        <a href="#" data-toggle="display" data-target=".advanced-settings"><?php _e("Advanced", "ownerrez"); ?> <i class="fa fa-chevron-down"></i></a>
+                    </th>
+                </tr>
+                <tr class="advanced-settings" style="display:none;">
                     <th scope="row">
                         <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
                     </th>

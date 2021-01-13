@@ -29,4 +29,16 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	$(function() {
+
+		$("[data-toggle=display][data-target]").on("click", function() {
+			var target = $(this).data("target");
+			$(target).toggle();
+			$('.fa', this).toggleClass(['fa-chevron-down', 'fa-chevron-up']);
+
+			return false;
+		})
+
+	});
+
 })( jQuery );
