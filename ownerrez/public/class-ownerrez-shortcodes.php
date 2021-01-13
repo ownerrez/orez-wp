@@ -163,6 +163,8 @@ class OwnerRez_ShortCodes {
                     else
                         return $output;
                 }
+
+                return "[Unknown field: " . $field . ". No such field found for type: " . $attrs["type"] . "]";
             }
 
             return $resource;
