@@ -240,21 +240,21 @@
         },
         {
             "name": "ownerrez/orez-api",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ownerrez/orez-api-php.git",
-                "reference": "59289cc37ca93f459caacf1e2fc04edf54b0935d"
+                "reference": "7b103b412eb359848cbde50bfc3c8b18a898b461"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/59289cc37ca93f459caacf1e2fc04edf54b0935d",
-                "reference": "59289cc37ca93f459caacf1e2fc04edf54b0935d",
+                "url": "https://api.github.com/repos/ownerrez/orez-api-php/zipball/7b103b412eb359848cbde50bfc3c8b18a898b461",
+                "reference": "7b103b412eb359848cbde50bfc3c8b18a898b461",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",
-                "php": "^7.4"
+                "php": "^7.4 || ^8.0"
             },
             "type": "library",
             "autoload": {
@@ -278,9 +278,9 @@
             "description": "Official PHP wrapper for the OwnerRez API",
             "support": {
                 "issues": "https://github.com/ownerrez/orez-api-php/issues",
-                "source": "https://github.com/ownerrez/orez-api-php/tree/v1.0.4"
+                "source": "https://github.com/ownerrez/orez-api-php/tree/v1.0.5"
             },
-            "time": "2021-01-29T15:57:39+00:00"
+            "time": "2021-01-29T16:26:45+00:00"
         },
         {
             "name": "psr/http-client",
