@@ -2,8 +2,8 @@
 Contributors: ownerrez
 Tags:
 Requires at least: 5.4
-Tested up to: 5.6
-Stable tag: 1.1.5
+Tested up to: 5.7
+Stable tag: 1.1.6
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
