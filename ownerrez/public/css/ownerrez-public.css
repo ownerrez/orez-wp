@@ -189,3 +189,28 @@
 .ownerrez-amenities-list-item .fa-info-circle {
     margin-left: 5px;
 }
+
+.lslide {
+    position: relative;
+    cursor: pointer;
+}
+.lslide .lg-video-play-icon {
+    width: 150px;
+}
+.lslide:hover .lg-video-play-icon {
+    opacity: 0.9;
+    cursor: pointer;
+}
+.lslide .lg-video-play-icon polygon {
+    fill: #fcfcfc;
+}
+.lslide .lg-video-play-icon circle {
+    fill: none;
+    stroke: #fcfcfc;
+    stroke-width: 3%;
+}
+.lg-video-play-button .lg-video-play-icon {
+    width: 35%;
+    left: 53%;
+    top: 48%;
+}

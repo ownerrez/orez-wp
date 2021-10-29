@@ -324,9 +324,10 @@ class OwnerRez_ShortCodes {
     function type_widget_photo_carousel($attrs, $content, $additionalArgs)
     {
         if (!$this->photoCarouselEnqueued) {
-            wp_enqueue_style("ownerrez-lgstyle1", "https://cdn.orez.io/hc/content/lightslider.min.css", null, $this->version);
-            wp_enqueue_style("ownerrez-lgstyle2", "https://cdn.orez.io/hc/content/lightgallery.min.css", null, $this->version);
+            wp_enqueue_style("ownerrez-lgstyle", "https://cdn.orez.io/hc/content/lgbundle.min.css", null, $this->version);
             wp_enqueue_script("ownerrez-lgscript", "https://cdn.orez.io/hc/scripts/lgbundle.min.js", array( 'jquery' ), $this->version);
+//            wp_enqueue_style("ownerrez-lgstyle", "https://hosteddev.ownerrez.com/content/lgbundle.min.css", null, $this->version);
+//            wp_enqueue_script("ownerrez-lgscript", "https://hosteddev.ownerrez.com/scripts/lgbundle.min.js", array( 'jquery' ), $this->version);
             wp_enqueue_script("ownerrez-photo-carousel.js", plugins_url('/ownerrez/public/js/ownerrez-photo-carousel.js'), array( 'jquery' ), $this->version);
 
             $this->photoCarouselEnqueued = true;
@@ -341,7 +342,23 @@ class OwnerRez_ShortCodes {
             if (property_exists($image, "caption"))
                 $caption = $image->caption;
 
-            $sliderUl .= "<li data-thumb='" . $image->croppedUrl . "' data-src='" . $image->originalUrl . "'><img src='" . $image->largeUrl . "' data-sub-html='" . $caption . "' />";
+            $srcUrl = $image->originalUrl;
+            $posterAttr = "";
+
+            if (property_exists($image, "videoUrl") && !is_null($image->videoUrl)) {
+                $srcUrl = $image->videoUrl . (strpos($image->videoUrl, "?") ? "&" : "?") . 'mute=0&muted=false';
+                $posterAttr = " data-poster='" . $image->originalUrl . "'";
+            }
+
+            $sliderUl .= "<li data-thumb='" . $image->croppedUrl . "' data-src='" . $srcUrl . "'" . $posterAttr . "><img src='" . $image->largeUrl . "' data-sub-html='" . $caption . "' />";
+
+            if (property_exists($image, "videoUrl") && !is_null($image->videoUrl)) {
+                $sliderUl .= '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" focusable="false" aria-labelledby="Play video" role="img" class="lg-video-play-icon">
+                        <title>Play video</title>
+                        <circle cx="50%" cy="50%" r="48"></circle>
+                        <polygon points="35,30 35,70 70,50"></polygon>
+                    </svg>';
+            }
 
             if (strlen($caption) > 0)
                 $sliderUl .= "<div class='caption'>" . $caption . "</div>";

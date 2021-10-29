@@ -13,9 +13,17 @@ jQuery(".ownerrez-photo-carousel").each(function() {
 		enableDrag: false,
 		mode: 'fade',
 		onSliderLoad: function (el) {
-			el.lightGallery({
+			lightGallery(el.get(0), {
+				licenseKey: "5CD6B56C-064145F1-A29A5203-5655C26F",
 				selector: '.ownerrez-photo-carousel .lslide',
-				preload: 4
+				preload: 4,
+				plugins: [lgVideo,lgThumbnail],
+				loadYouTubeThumbnail: false,
+				gotoNextSlideOnVideoEnd: false,
+				youTubePlayerParams: {
+					modestbranding: 1,
+					iv_load_policy: 3
+				}
 			});
 		},
 		prevHtml: '<span class="ownerrez-photo-carousel-prev lg-prev lg-icon"></span>',
