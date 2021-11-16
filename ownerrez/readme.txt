@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 5.7
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -32,6 +32,13 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.7 =
+- Add support for video option in photo carousel
+
+= 1.1.6 =
+- Add support for WordPress 5.7
+- Add support for PHP 8
+
 = 1.1.5 =
 - Upgrade to orez-api version 1.0.4: Now validates integer quote properties and errors for invalid.
 
