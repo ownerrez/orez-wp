@@ -35,6 +35,10 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 = 1.1.9 =
 - Added video support to photo carousel.
 
+= 1.1.6 =
+- Add support for WordPress 5.7
+- Add support for PHP 8
+
 = 1.1.5 =
 - Upgraded to orez-api version 1.0.4: Now validates integer quote properties and errors for invalid.
 
