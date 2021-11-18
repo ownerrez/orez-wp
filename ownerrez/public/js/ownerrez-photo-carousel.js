@@ -1,6 +1,6 @@
 jQuery(".ownerrez-photo-carousel").each(function() {
-	var div = jQuery(this);
-	div.lightSlider({
+	var loadingPager = jQuery(this).nextAll("ul.loading-pager");loadingPager
+	jQuery(this).lightSlider({
 		gallery: true,
 		item: 1,
 		loop: true,
@@ -13,6 +13,7 @@ jQuery(".ownerrez-photo-carousel").each(function() {
 		enableDrag: false,
 		mode: 'fade',
 		onSliderLoad: function (el) {
+			loadingPager.remove();
 			lightGallery(el.get(0), {
 				licenseKey: "5CD6B56C-064145F1-A29A5203-5655C26F",
 				selector: '.ownerrez-photo-carousel .lslide',

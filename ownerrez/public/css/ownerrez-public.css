@@ -1,12 +1,27 @@
 .loading-slider {
     padding: 0;
-    padding-bottom: 70% /* a bit extra for the thumbs */
+    margin: 0;
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgb(204 204 204) 1px 1px 3px;
 }
 
-.loading-slider li {
+.loading-slider li,
+.lightSlider li {
     margin: 0;
     padding: 0;
-    list-style: none
+    list-style: none;
+    line-height: 0;
+}
+
+ul.loading-pager {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    height: 81px;
+}
+ul.loading-pager li {
+    line-height: 5;
 }
 
 .loading-slider li:not(:first-child) {
@@ -19,18 +34,20 @@
     box-shadow: rgb(204, 204, 204) 1px 1px 3px;
 }
 
+.loading-slider .caption,
 .lightSlider .caption {
     text-align: center;
     position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     font-size: 16px;
     margin: 0;
     color: #333;
     text-shadow: 1px 1px 1px #888;
     padding: 5px 10px 5px 5px;
     background-color: rgba(255,255,255,.8);
+    line-height: 1.2;
 }
 
 .lSSlideOuter li {
@@ -190,20 +207,26 @@
     margin-left: 5px;
 }
 
+.loading-slider li,
 .lslide {
     position: relative;
     cursor: pointer;
 }
+.loading-slider li .lg-video-play-icon,
 .lslide .lg-video-play-icon {
     width: 150px;
 }
+
 .lslide:hover .lg-video-play-icon {
     opacity: 0.9;
     cursor: pointer;
 }
+
+.loading-slider li .lg-video-play-icon polygon,
 .lslide .lg-video-play-icon polygon {
     fill: #fcfcfc;
 }
+.loading-slider li .lg-video-play-icon circle,
 .lslide .lg-video-play-icon circle {
     fill: none;
     stroke: #fcfcfc;
@@ -213,4 +236,9 @@
     width: 35%;
     left: 53%;
     top: 48%;
+}
+
+.loading-slider img,
+.lslide img {
+    min-width: 100%;
 }

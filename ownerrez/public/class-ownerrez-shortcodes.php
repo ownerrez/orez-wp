@@ -22,46 +22,46 @@
  */
 class OwnerRez_ShortCodes {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $ownerrez    The ID of this plugin.
-	 */
-	private $ownerrez;
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $ownerrez    The ID of this plugin.
+     */
+    private $ownerrez;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
 
     private $api;
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $ownerrez       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $ownerrez, $version ) {
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string    $ownerrez       The name of the plugin.
+     * @param      string    $version    The version of this plugin.
+     */
+    public function __construct( $ownerrez, $version ) {
 
-		$this->ownerrez = $ownerrez;
-		$this->version = $version;
+        $this->ownerrez = $ownerrez;
+        $this->version = $version;
         $this->api = new OwnerRez_ApiWrapper();
-	}
+    }
 
-	/**
-	 * Register the shortcodes for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function register_shortcodes()
+    /**
+     * Register the shortcodes for the public-facing side of the site.
+     *
+     * @since    1.0.0
+     */
+    public function register_shortcodes()
     {
         add_shortcode('ownerrez', array($this, 'shortcode'));
     }
@@ -366,7 +366,8 @@ class OwnerRez_ShortCodes {
             $sliderUl .= "</li>";
         }
 
-        $sliderUl .= "</ul>";
+        $sliderUl .= '</ul>
+		<ul class="loading-pager"><li>Loading...</li></ul>';
 
         return $sliderUl;
     }
