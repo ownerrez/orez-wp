@@ -350,7 +350,7 @@ class OwnerRez_ShortCodes {
                 $posterAttr = " data-poster='" . $image->originalUrl . "'";
             }
 
-            $sliderUl .= "<li data-thumb='" . $image->croppedUrl . "' data-src='" . $srcUrl . "'" . $posterAttr . "><img src='" . $image->largeUrl . "' data-sub-html='" . $caption . "' />";
+            $sliderUl .= "<li data-thumb='" . $image->croppedUrl . "' data-src='" . $srcUrl . "'" . $posterAttr . "><img src='" . $image->largeUrl . "' alt='" . $caption . "' data-sub-html='.caption' style='width:100%;height:100%;object-fit:cover;' />";
 
             if (property_exists($image, "videoUrl") && !is_null($image->videoUrl)) {
                 $sliderUl .= '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" focusable="false" aria-labelledby="Play video" role="img" class="lg-video-play-icon">
