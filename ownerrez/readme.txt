@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.11 =
+- Further improvements to photo carousel.
+
 = 1.1.10 =
 - Improved caption handling for photo carousel.
 
