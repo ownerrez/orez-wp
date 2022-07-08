@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.13 =
+- Webhooks now always return the correct http code.
+
 = 1.1.12 =
 - Html encode image captions on carousel render.
 

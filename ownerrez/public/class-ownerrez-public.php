@@ -103,8 +103,9 @@ class OwnerRez_Public {
         if(substr($_SERVER["REQUEST_URI"], 0, strlen('/ownerrez/')) === '/ownerrez/') {
             $webhook = trim(preg_split("/ownerrez/", $_SERVER["REQUEST_URI"])[1], " \t\r\n/");
 
+            $result = new stdClass();
+
             if ($webhook === "clear-transients") {
-                $result = new stdClass();
                 $result->authorized = false;
                 $result->succeeded = false;
 
@@ -124,13 +125,19 @@ class OwnerRez_Public {
                         $result->succeeded = true;
                     }
                     catch (Exception $ex) {
+                        header('HTTP/1.0 500 Internal Server Error');
                         $result->exception = $ex->getMessage();
                     }
                 }
-
-                echo json_encode($result);
-                exit();
             }
+            else
+            {
+                header('HTTP/1.0 404 Not Found');
+                $result->exception = "Unknown webhook: " . $webhook;
+            }
+
+            echo json_encode($result);
+            exit();
         }
     }
 
