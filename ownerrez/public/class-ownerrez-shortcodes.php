@@ -339,8 +339,8 @@ class OwnerRez_ShortCodes {
 
         foreach ($images as &$image) {
             $caption = "";
-            if (property_exists($image, "caption"))
-                $caption = $image->caption;
+            if (property_exists($image, "caption") && !is_null($image->caption))
+                $caption = htmlentities2($image->caption);
 
             $srcUrl = $image->originalUrl;
             $posterAttr = "";

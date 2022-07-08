@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 5.9.3
-Stable tag: 1.1.10
+Stable tag: 1.1.12
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.12 =
+- Html encode image captions on carousel render.
+
 = 1.1.11 =
 - Further improvements to photo carousel.
 
