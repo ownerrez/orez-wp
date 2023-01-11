@@ -1,32 +1,46 @@
 (function( $ ) {
 	'use strict';
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+	$(function() {
+
+		// initialize carousel
+		$(".ownerrez-photo-carousel").each(function () {
+			var loadingPager = $(this).nextAll("ul.loading-pager");
+			var carousel = this;
+
+			$(this).lightSlider({
+				gallery: true,
+				item: 1,
+				loop: true,
+				auto: true,
+				pause: 5000,
+				thumbItem: 6,
+				slideMargin: 0,
+				galleryMargin: 0,
+				thumbMargin: 0,
+				enableDrag: false,
+				mode: 'fade',
+				onSliderLoad: function (el) {
+					loadingPager.remove();
+					lightGallery(el.get(0), {
+						licenseKey: "5CD6B56C-064145F1-A29A5203-5655C26F",
+						selector: '.ownerrez-photo-carousel .lslide',
+						preload: 4,
+						plugins: [lgVideo, lgThumbnail],
+						loadYouTubeThumbnail: false,
+						gotoNextSlideOnVideoEnd: false,
+						youTubePlayerParams: {
+							modestbranding: 1,
+							iv_load_policy: 3
+						}
+					});
+
+					$("li", carousel).css("height", "100%");
+				},
+				prevHtml: '<span class="ownerrez-photo-carousel-prev lg-prev lg-icon"></span>',
+				nextHtml: '<span class="ownerrez-photo-carousel-next lg-next lg-icon"></span>'
+			}).removeClass("loading-slider");
+		});
+	});
 
 })( jQuery );
