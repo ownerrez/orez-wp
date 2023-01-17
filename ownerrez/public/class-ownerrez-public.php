@@ -143,8 +143,14 @@ class OwnerRez_Public {
 
     function clear_transients()
     {
-        foreach ( $this->get_transient_keys_with_prefix( "orapi." ) as $key ) {
-            delete_transient( $key );
+        if ( wp_using_ext_object_cache() ) {
+            // cache is stored somewhere other than the options table... it's either flush all or loop all...
+            wp_cache_flush();
+        }
+        else {
+            foreach ($this->get_transient_keys_with_prefix("orapi.") as $key) {
+                delete_transient($key);
+            }
         }
     }
 
@@ -160,17 +166,17 @@ class OwnerRez_Public {
     function get_transient_keys_with_prefix( $prefix ) {
         global $wpdb;
 
-        $prefix = $wpdb->esc_like( '_transient_' . $prefix );
+        $prefix = $wpdb->esc_like('_transient_' . $prefix);
         $sql = "SELECT `option_name` FROM $wpdb->options WHERE `option_name` LIKE '%s'";
-        $keys = $wpdb->get_results( $wpdb->prepare( $sql, $prefix . '%' ), ARRAY_A );
+        $keys = $wpdb->get_results($wpdb->prepare($sql, $prefix . '%'), ARRAY_A);
 
-        if ( is_wp_error( $keys ) ) {
+        if (is_wp_error($keys)) {
             return [];
         }
 
-        return array_map( function( $key ) {
+        return array_map(function ($key) {
             // Remove '_transient_' from the option name.
-            return ltrim( $key['option_name'], '_transient_' );
-        }, $keys );
+            return ltrim($key['option_name'], '_transient_');
+        }, $keys);
     }
 }
