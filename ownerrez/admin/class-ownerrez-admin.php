@@ -132,10 +132,26 @@ class OwnerRez_Admin
 		}
 		catch (GuzzleHttp\Exception\ClientException | GuzzleHttp\Exception\ServerException $ex)
 		{
-			if ($ex->hasResponse() && $ex->getResponse()->getStatusCode() == 403)
-				$this->handleException($ex, "connection-blocked");
+			if ($ex->hasResponse())
+			{ 
+				$response = $ex->getResponse();
+
+				if ($response->getStatusCode() == 403)
+				{
+					$this->handleException($ex, "connection-blocked");
+				}
+				else
+				{
+					$error = json_decode($response->getBody()->getContents());
+
+					if (isset($error->messages))
+						$this->handleException($ex, $error->messages[0]);
+					else
+						$this->handleException($ex, "connection-failure");
+				}
+			}
 			else
-				$this->handleException($ex, $ex->getResponse()->getReasonPhrase());
+				$this->handleException($ex, "connection-failure");
 		}
 		catch (Exception $ex)
 		{

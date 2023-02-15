@@ -2,8 +2,8 @@
 Contributors: ownerrez
 Tags:
 Requires at least: 5.4
-Tested up to: 5.9.3
-Stable tag: 1.1.15
+Tested up to: 6.0.0
+Stable tag: 1.1.16
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.16 = 
+- Provide clearer error messages during registration.
+
 = 1.1.15 =
 - Handle external cache implementations.
 
