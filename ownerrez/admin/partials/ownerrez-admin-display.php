@@ -31,7 +31,25 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
         <?php } else if ($status == "connection-failure") { ?>
 
             <div class="notice notice-error is-dismissible">
-                <p><strong><?php _e("We were unable to establish a connection with the username and access token provided. Please ensure the values you entered are correct, and that the Hosted Sites premium feature has been enabled on your account.", "ownerrez"); ?></strong></p>
+                <p><strong><?php _e("We were unable to establish a connection with the username and access token provided. Please ensure the values you entered are correct, and that the WordPress premium feature has been enabled on your account.", "ownerrez"); ?></strong></p>
+                <button type="button" class="notice-dismiss">
+                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
+                </button>
+            </div>
+
+        <?php } else if ($status == "connection-blocked") { ?>
+
+            <div class="notice notice-error is-dismissible">
+                <p><strong><?php _e("We were unable to establish a connection. Your WordPress host server IP address is blocked. Please add your host server IP address to the allow list under Developer / API settings.", "ownerrez"); ?></strong></p>
+                <button type="button" class="notice-dismiss">
+                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
+                </button>
+            </div>
+
+        <?php } else if ($status != null) { ?>
+
+            <div class="notice notice-error is-dismissible">
+                <p><strong><?php _e("We were unable to establish a connection. " . $status, "ownerrez"); ?></strong></p>
                 <button type="button" class="notice-dismiss">
                     <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
                 </button>

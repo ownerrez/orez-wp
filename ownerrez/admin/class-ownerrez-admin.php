@@ -99,7 +99,7 @@ class OwnerRez_Admin
 	public function menu_settings_save()
 	{
 		// Get the options that were sent
-        $apiRoot = !empty($_POST["ownerrez_apiRoot"]) ? esc_url_raw($_POST["ownerrez_apiRoot"], ["http", "https"]) : self::DEFAULT_API_ROOT;
+		$apiRoot = !empty($_POST["ownerrez_apiRoot"]) ? esc_url_raw($_POST["ownerrez_apiRoot"], ["http", "https"]) : self::DEFAULT_API_ROOT;
 		$username = !empty($_POST["ownerrez_username"]) ? sanitize_email($_POST["ownerrez_username"]) : NULL;
 		$token = !empty($_POST["ownerrez_token"]) ? sanitize_text_field($_POST["ownerrez_token"]) : NULL;
 
@@ -109,54 +109,66 @@ class OwnerRez_Admin
 		if ($webhookToken === false)
 		    $webhookToken = wp_generate_password(20, false);
 
-        try {
-            // test creds
-            $client = new OwnerRez\Api\Client($username, $token, $apiRoot);
-            $result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
+		try {
+				// test creds
+				$client = new OwnerRez\Api\Client($username, $token, $apiRoot);
+				$result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
 
-            if (isset($result->id)) {
-                // save creds
-                update_option("ownerrez_apiRoot", $apiRoot, true);
-                update_option("ownerrez_username", $username, true);
-                update_option("ownerrez_token", $token, true);
-                update_option("ownerrez_externalSiteId", $result->id, true);
-                update_option("ownerrez_externalSiteName", $result->name, true);
-                update_option("ownerrez_webhookToken", $webhookToken, true);
+				if (isset($result->id)) {
+						// save creds
+						update_option("ownerrez_apiRoot", $apiRoot, true);
+						update_option("ownerrez_username", $username, true);
+						update_option("ownerrez_token", $token, true);
+						update_option("ownerrez_externalSiteId", $result->id, true);
+						update_option("ownerrez_externalSiteName", $result->name, true);
+						update_option("ownerrez_webhookToken", $webhookToken, true);
 
-                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
-                exit;
-            } else {
-                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
-                exit;
-            }
-        }
-        catch (Exception $ex)
-        {
-            if (WP_DEBUG === true) {
-                echo $ex->getMessage();
-            }
-            else {
-                error_log($ex->getMessage());
-                header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
-            }
-
-            exit;
-        }
+						header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=success");
+						exit;
+				} else {
+						header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=connection-failure");
+						exit;
+				}
+		}
+		catch (GuzzleHttp\Exception\ClientException | GuzzleHttp\Exception\ServerException $ex)
+		{
+			if ($ex->hasResponse() && $ex->getResponse()->getStatusCode() == 403)
+				$this->handleException($ex, "connection-blocked");
+			else
+				$this->handleException($ex, $ex->getResponse()->getReasonPhrase());
+		}
+		catch (Exception $ex)
+		{
+			$this->handleException($ex, "connection-failure");
+		}
 	}
 
-    public function plugin_links($links)
-    {
-        $url = esc_url( add_query_arg('page', 'ownerrez', get_admin_url() . 'admin.php') );
+	private function handleException($ex, $statusMessage)
+	{
+		if (WP_DEBUG === true) {
+			echo $ex->getMessage();
+		}
+		else {
+				error_log($ex->getMessage());
+				header("Location: " . get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=" . $statusMessage);
+		}
 
-        // Create the link.
-        $settings_link = "<a href='$url'>" . __( 'Settings' ) . "</a>";
+		exit;
+	}
 
-        // Adds the link to the end of the array.
-        array_push(
-            $links,
-            $settings_link
-        );
+	public function plugin_links($links)
+	{
+			$url = esc_url( add_query_arg('page', 'ownerrez', get_admin_url() . 'admin.php') );
 
-        return $links;
-    }
+			// Create the link.
+			$settings_link = "<a href='$url'>" . __( 'Settings' ) . "</a>";
+
+			// Adds the link to the end of the array.
+			array_push(
+					$links,
+					$settings_link
+			);
+
+			return $links;
+	}
 }
