@@ -110,6 +110,8 @@ class OwnerRez_ShortCodes {
             return join(", ", $result);
         elseif (array_key_exists("format", $additionalArgs))
             return sprintf($additionalArgs["format"], $result);
+        elseif (is_numeric($result))
+            return $result;
         else
             return "[Unknown]";
     }
