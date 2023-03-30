@@ -17,17 +17,17 @@ jobs:
       run: |
         git config --global user.email "dev+codebot@ownerreservations.com" &&
         git config --global user.name "Codebot on GitHub" &&
-        git config --global --add safe.directory /github/workspace &&
         sed -i 's/lib/ /' .gitignore &&
         git add .gitignore &&
         git add -f ownerrez/lib . &&
         git commit -m "Dependencies"
     - name: WordPress Plugin Deploy
-      uses: Lewiscowles1986/action-wordpress-plugin-deploy@feat/add-custom-workspace
+      id: deploy
+      uses: 10up/action-wordpress-plugin-deploy@stable
       with:
         generate-zip: true
       env:
-        WORKSPACE_DIR: ownerrez
+        BUILD_DIR: ownerrez
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SLUG: ownerrez
@@ -35,5 +35,5 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:        
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{github.workspace}}/ownerrez.zip
+        file: ${{ steps.deploy.outputs.zip-path }}
         asset_name: ownerrez.zip
