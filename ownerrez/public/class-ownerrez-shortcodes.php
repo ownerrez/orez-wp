@@ -73,7 +73,8 @@ class OwnerRez_ShortCodes {
             'type' => null,
             'id' => null,
             'field' => null,
-            'json' => false
+            'json' => false,
+            'raw' => false,
         ), $attrs, 'ownerrez' );
 
         if ($attrs["type"] != null)
@@ -146,27 +147,38 @@ class OwnerRez_ShortCodes {
                 return json_encode($resource);
             }
             elseif ($attrs["field"] != null) {
-                $field = lcfirst($attrs["field"]);
+                $fieldParts = explode(',', $attrs["field"]);
+                $raw = (bool)$attrs["raw"];
 
-                if (property_exists($resource, $field))
+                $output = $resource;
+
+                foreach ($fieldParts as $field)
                 {
-                    $output = $resource->$field;
+                    $field = lcfirst($field);
 
-                    if (is_array($output))
+                    if (property_exists($output, $field))
                     {
-                        foreach($output as &$val)
-                            if (is_string($val))
-                                $val = $this->camelToTitle($val);
+                        $output = $output->$field;
+                        
+                        if ($raw)
+                            continue;
 
-                        return join(", ", $output);
+                        if (is_array($output))
+                        {
+                            foreach($output as &$val)
+                                if (is_string($val))
+                                    $val = $this->camelToTitle($val);
+
+                            $output = join(", ", $output);
+                        }
+                        else if (is_string($output))
+                            $output = $this->camelToTitle($output);
                     }
-                    else if (is_string($output))
-                        return $this->camelToTitle($output);
                     else
-                        return $output;
+                        return "[Unknown field: " . $field . ". No such field found for type: " . $attrs["type"] . "]";
                 }
-
-                return "[Unknown field: " . $field . ". No such field found for type: " . $attrs["type"] . "]";
+                
+                return $output;
             }
 
             return $resource;
