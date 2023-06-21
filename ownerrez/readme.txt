@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 6.0.0
-Stable tag: 1.1.17
+Stable tag: 1.1.18
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerreservations.com](mailto:help@
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.1.18 =
+- Add support for commas in shortcode "field" parameter to access object type properties on the underlying API response
+
 = 1.1.17 =
 - Render numeric shortcode values without a format using default format instead of "[Unknown]"
 
