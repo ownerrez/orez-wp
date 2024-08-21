@@ -118,8 +118,6 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
 
         <form id="clear_ownerrez_transients" method="post" action="<?php echo admin_url('admin-post.php'); ?>">
             <input type="hidden" name="action" value="clear_ownerrez_transients" />
-            <p class="submit">
-            </p>
         </form>
     </div>
 
