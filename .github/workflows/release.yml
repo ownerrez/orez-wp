@@ -15,7 +15,7 @@ jobs:
       id: composer
     - name: Commit lib folder (but don't push)
       run: |
-        git config --global user.email "dev+codebot@ownerreservations.com" &&
+        git config --global user.email "dev+codebot@ownerrez.com" &&
         git config --global user.name "Codebot on GitHub" &&
         sed -i 's/lib/ /' .gitignore &&
         git add .gitignore &&

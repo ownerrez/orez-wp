@@ -46,13 +46,13 @@ class OwnerRez_ApiWrapper
                 $response = get_transient($cacheKey);
 
                 if ($response === false) {
-                    $response = json_decode($r->request($verb, $action, (int)$id, $query, $body));
+                    $response = $r->request($verb, $action, (int)$id, $query, $body);
 
                     set_transient($cacheKey, $response, 3600 * 1);
                 }
             }
             else {
-                $response = json_decode($r->request($verb, $action, (int)$id, $query, $body));
+                $response = $r->request($verb, $action, (int)$id, $query, $body);
             }
 
             return $response;

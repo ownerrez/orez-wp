@@ -18,7 +18,7 @@
  *
  * @package    OwnerRez
  * @subpackage OwnerRez/ajax
- * @author     OwnerRez Inc <dev@ownerreservations.com>
+ * @author     OwnerRez Inc <dev@ownerrez.com>
  */
 class OwnerRez_Ajax
 {
@@ -93,8 +93,8 @@ class OwnerRez_Ajax
             $response = $this->api->send_request($get_resource, $verb, $action, $call['id'], $call['query'], $call['body']);
             echo json_encode(['status' => 'success', 'response' => $response]);
         }
-        catch (\GuzzleHttp\Exception\ServerException $ex) {
-            echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => json_decode($ex->getResponse()->getBody())->messages ]);
+        catch (\OwnerRez\Api\Exception $ex) {
+            echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => $ex->response->getJson()->messages ]);
         }
 
         wp_die(); // this is required to terminate immediately and return a proper response

@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    OwnerRez
  * @subpackage OwnerRez/includes
- * @author     Your Name <dev@ownerreservations.com>
+ * @author     Your Name <dev@ownerrez.com>
  */
 class OwnerRez_Deactivator {
 
