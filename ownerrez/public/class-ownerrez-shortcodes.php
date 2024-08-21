@@ -184,7 +184,7 @@ class OwnerRez_ShortCodes {
             return $resource;
         }
         catch (\OwnerRez\Api\Exception $ex) {
-            echo json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => $ex->response->getJson()->messages ]);
+            return json_encode([ 'status' => 'error', 'exception' => $ex->__toString(), 'messages' => $ex->response->getJson()->messages ]);
         }
     }
 
