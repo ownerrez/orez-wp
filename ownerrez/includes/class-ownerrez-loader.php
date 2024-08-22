@@ -19,7 +19,7 @@
  *
  * @package    OwnerRez
  * @subpackage OwnerRez/includes
- * @author     Dev <dev@ownerreservations.com>
+ * @author     Dev <dev@ownerrez.com>
  */
 class OwnerRez_Loader {
 

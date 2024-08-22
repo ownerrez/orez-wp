@@ -23,42 +23,36 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
 
             <div class="notice notice-success is-dismissible">
                 <p><strong><?php _e("Settings saved.", "ownerrez"); ?></strong></p>
-                <button type="button" class="notice-dismiss">
-                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
-                </button>
+            </div>
+
+        <?php } else if ($status == "cache-cleared") { ?>
+
+            <div class="notice notice-success is-dismissible">
+                <p><strong><?php _e("Cache Cleared.", "ownerrez"); ?></strong></p>
             </div>
 
         <?php } else if ($status == "connection-failure") { ?>
 
             <div class="notice notice-error is-dismissible">
                 <p><strong><?php _e("We were unable to establish a connection with the username and access token provided. Please ensure the values you entered are correct, and that the WordPress premium feature has been enabled on your account.", "ownerrez"); ?></strong></p>
-                <button type="button" class="notice-dismiss">
-                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
-                </button>
             </div>
 
         <?php } else if ($status == "connection-blocked") { ?>
 
             <div class="notice notice-error is-dismissible">
                 <p><strong><?php _e("We were unable to establish a connection. Your WordPress host server IP address is blocked. Please add your host server IP address to the allow list under Developer / API settings.", "ownerrez"); ?></strong></p>
-                <button type="button" class="notice-dismiss">
-                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
-                </button>
             </div>
 
         <?php } else if ($status != null) { ?>
 
             <div class="notice notice-error is-dismissible">
                 <p><strong><?php _e("We were unable to establish a connection. " . $status, "ownerrez"); ?></strong></p>
-                <button type="button" class="notice-dismiss">
-                    <span class="screen-reader-text"><?php _e("Dismiss this notice.", "ownerrez"); ?></span>
-                </button>
             </div>
 
         <?php } ?>
 
         <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
-            <input id="ownerrez_action" type="hidden" name="action" value="save_ownerrez_settings" />
+            <input type="hidden" name="action" value="save_ownerrez_settings" />
 
             <table class="form-table" role="presentation">
                 <tr>
@@ -85,7 +79,7 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                             <label for="ownerrez_externalSiteName"><?php _e("Registered as External Site:", "ownerrez"); ?></label>
                         </th>
                         <td>
-                            <input id="ownerrez_token" readonly class="regular-text" type="text" name="ownerrez_externalSiteName" value="<?php echo $externalSiteName; ?>" />
+                            <input id="ownerrez_externalSiteName" readonly class="regular-text" type="text" name="ownerrez_externalSiteName" value="<?php echo $externalSiteName; ?>" />
                         </td>
                     </tr>
                 <?php } ?>
@@ -94,16 +88,26 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
                         <a href="#" data-toggle="display" data-target=".advanced-settings"><?php _e("Advanced", "ownerrez"); ?> <i class="fa fa-chevron-down"></i></a>
                     </th>
                 </tr>
-                <tr class="advanced-settings" style="display:none;">
-                    <th scope="row">
-                        <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
-                    </th>
-                    <td>
-                        <input id="ownerrez_apiRoot" class="regular-text" type="text" name="ownerrez_apiRoot" value="<?php echo $apiRoot; ?>" />
-                        <p class="description"><?php _e("This is for advanced usage. You should not need to change this option.", "ownerrez"); ?></p>
+                <tbody class="advanced-settings" style="display:none;">
+                    <tr>
+                        <th scope="row">
+                            <label for="ownerrez_apiRoot"><?php _e("API Root Url:", "ownerrez"); ?></label>
+                        </th>
+                        <td>
+                            <input id="ownerrez_apiRoot" class="regular-text" type="text" name="ownerrez_apiRoot" value="<?php echo $apiRoot; ?>" />
+                            <p class="description"><?php _e("This is for advanced usage. You should not need to change this option.", "ownerrez"); ?></p>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                        
+                        </th>
+                        <td>
+                            <button class="button button-primary" type="submit" form="clear_ownerrez_transients"><?php _e("Clear Cache", "ownerrez"); ?></button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
             <p class="submit">
@@ -112,6 +116,9 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
             </p>
         </form>
 
+        <form id="clear_ownerrez_transients" method="post" action="<?php echo admin_url('admin-post.php'); ?>">
+            <input type="hidden" name="action" value="clear_ownerrez_transients" />
+        </form>
     </div>
 
 <?php } ?>

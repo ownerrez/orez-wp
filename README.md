@@ -2,7 +2,7 @@
 
 The official WordPress plugin for the OwnerRez API.
 
-Please submit questions or problems to help@ownerreservations.com
+Please submit questions or problems to help@ownerrez.com
 
 ## Usage
 
@@ -12,16 +12,16 @@ After registration, you can use this plugin to insert shortcodes for your proper
 
 For full documentation, visit the OwnerRez support articles:
 
-- [Overview](https://www.ownerreservations.com/support/articles/wordpress-plugin-overview)
-- [Setup & Connecting](https://www.ownerreservations.com/support/articles/wordpress-plugin-setup-connecting)
-- [Shortcodes](https://www.ownerreservations.com/support/articles/wordpress-plugin-shortcodes)
-- [Common Issues & Questions](https://www.ownerreservations.com/support/articles/wp-plugin-faq)
+- [Overview](https://www.ownerrez.com/support/articles/wordpress-plugin-overview)
+- [Setup & Connecting](https://www.ownerrez.com/support/articles/wordpress-plugin-setup-connecting)
+- [Shortcodes](https://www.ownerrez.com/support/articles/wordpress-plugin-shortcodes)
+- [Common Issues & Questions](https://www.ownerrez.com/support/articles/wp-plugin-faq)
 
 
 ## Custom AJAX
 
 OwnerRez API end points are accessible via admin ajax requests. This feature is currently under development. If you would like to
-use this feature, please [let us know](mailto:help@ownerreservations.com) about your use case. 
+use this feature, please [let us know](mailto:help@ownerrez.com) about your use case. 
 
 ```javascript
 var ownerrezRequest = { 
@@ -43,3 +43,9 @@ jQuery.post(ajaxurl,
     function(response) { /* do something with the json response from OwnerRez */ }
 );
 ```
+
+## Release
+
+This plugin is hosted on [wordpress.org](https://wordpress.org/plugins/ownerrez/).
+
+To release a new version, create a [Github release](https://github.com/ownerrez/orez-wp/releases).

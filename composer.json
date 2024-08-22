@@ -6,12 +6,12 @@
     "authors": [
         {
             "name": "OwnerRez Inc",
-            "email": "dev@ownerreservations.com"
+            "email": "dev@ownerrez.com"
         }
     ],
     "minimum-stability": "stable",
     "require": {
-        "ownerrez/orez-api": "1.0.*"
+        "ownerrez/orez-api": "1.1.*"
     },
     "config": {
         "vendor-dir": "ownerrez/lib"

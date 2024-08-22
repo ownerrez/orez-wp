@@ -18,11 +18,11 @@
  *
  * @package    OwnerRez
  * @subpackage OwnerRez/admin
- * @author     OwnerRez Inc <dev@ownerreservations.com>
+ * @author     OwnerRez Inc <dev@ownerrez.com>
  */
 class OwnerRez_Admin
 {
-    const DEFAULT_API_ROOT = 'https://api.ownerreservations.com/';
+    const DEFAULT_API_ROOT = 'https://api.ownerrez.com/';
 
 	/**
 	 * The ID of this plugin.
@@ -112,7 +112,7 @@ class OwnerRez_Admin
 		try {
 				// test creds
 				$client = new OwnerRez\Api\Client($username, $token, $apiRoot);
-				$result = json_decode($client->externalSites()->register($webhookUrl, $webhookToken));
+				$result = $client->externalSites()->register($webhookUrl, $webhookToken);
 
 				if (isset($result->id)) {
 						// save creds
@@ -130,28 +130,21 @@ class OwnerRez_Admin
 						exit;
 				}
 		}
-		catch (GuzzleHttp\Exception\ClientException | GuzzleHttp\Exception\ServerException $ex)
+		catch (\OwnerRez\Api\Exception $ex)
 		{
-			if ($ex->hasResponse())
-			{ 
-				$response = $ex->getResponse();
-
-				if ($response->getStatusCode() == 403)
-				{
-					$this->handleException($ex, "connection-blocked");
-				}
-				else
-				{
-					$error = json_decode($response->getBody()->getContents());
-
-					if (isset($error->messages))
-						$this->handleException($ex, $error->messages[0]);
-					else
-						$this->handleException($ex, "connection-failure");
-				}
+			if ($ex->getCode() == 403)
+			{
+				$this->handleException($ex, "connection-blocked");
 			}
 			else
-				$this->handleException($ex, "connection-failure");
+			{
+				$error = $ex->response->getJson();
+
+				if (isset($error->messages))
+					$this->handleException($ex, $error->messages[0]);
+				else
+					$this->handleException($ex, "connection-failure");
+			}
 		}
 		catch (Exception $ex)
 		{
@@ -186,5 +179,15 @@ class OwnerRez_Admin
 			);
 
 			return $links;
+	}
+
+	public function clear_transients()
+	{
+		$plugin_public = new OwnerRez_Public($this->ownerrez, $this->version);
+		$plugin_public->clear_transients();
+
+		wp_redirect(get_bloginfo("url") . "/wp-admin/options-general.php?page=ownerrez&status=cache-cleared");
+
+		exit;
 	}
 }

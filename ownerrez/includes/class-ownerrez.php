@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    OwnerRez
  * @subpackage OwnerRez/includes
- * @author     Dev <dev@ownerreservations.com>
+ * @author     Dev <dev@ownerrez.com>
  */
 class OwnerRez
 {
@@ -142,6 +142,7 @@ class OwnerRez
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_settings');
 		$this->loader->add_action('admin_post_save_ownerrez_settings', $plugin_admin, 'menu_settings_save');
+		$this->loader->add_action('admin_post_clear_ownerrez_transients', $plugin_admin, 'clear_transients');
         $this->loader->add_filter('plugin_action_links_ownerrez/ownerrez.php', $plugin_admin, 'plugin_links');
 
 		// define admin ajax end points
