@@ -43,3 +43,9 @@ jQuery.post(ajaxurl,
     function(response) { /* do something with the json response from OwnerRez */ }
 );
 ```
+
+## Release
+
+This plugin is hosted on [wordpress.org](https://wordpress.org/plugins/ownerrez/).
+
+To release a new version, create a [Github release](https://github.com/ownerrez/orez-wp/releases).
