@@ -102,7 +102,7 @@ class OwnerRez_Admin
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 		}
 
-		if (empty($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'save_ownerrez_settings')) {
+		if (!check_admin_referer('save_ownerrez_settings')) {
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 		}
 
@@ -195,7 +195,7 @@ class OwnerRez_Admin
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 		}
 
-		if (empty($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'clear_ownerrez_transients')) {
+		if (!check_admin_referer('clear_ownerrez_transients')) {
 			wp_die(__('You do not have sufficient permissions to access this page.'));
 		}
 
