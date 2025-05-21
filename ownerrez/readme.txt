@@ -3,7 +3,7 @@ Contributors: ownerrez
 Tags:
 Requires at least: 5.4
 Tested up to: 6.6.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -32,6 +32,9 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.2.1 =
+- Improve security in administrative pages
+
 = 1.2.0 =
 - Update URLs to OwnerRez short domain
 - Update ownerrez/orez-api dependency to 1.1.*, removed Guzzle dependency

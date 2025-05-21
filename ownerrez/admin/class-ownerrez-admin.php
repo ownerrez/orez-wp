@@ -98,6 +98,14 @@ class OwnerRez_Admin
 
 	public function menu_settings_save()
 	{
+		if (!current_user_can('manage_options')) {
+			wp_die(__('You do not have sufficient permissions to access this page.'));
+		}
+
+		if (empty($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'save_ownerrez_settings')) {
+			wp_die(__('You do not have sufficient permissions to access this page.'));
+		}
+
 		// Get the options that were sent
 		$apiRoot = !empty($_POST["ownerrez_apiRoot"]) ? esc_url_raw($_POST["ownerrez_apiRoot"], ["http", "https"]) : self::DEFAULT_API_ROOT;
 		$username = !empty($_POST["ownerrez_username"]) ? sanitize_email($_POST["ownerrez_username"]) : NULL;
@@ -183,6 +191,14 @@ class OwnerRez_Admin
 
 	public function clear_transients()
 	{
+		if (!current_user_can('manage_options')) {
+			wp_die(__('You do not have sufficient permissions to access this page.'));
+		}
+
+		if (empty($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'clear_ownerrez_transients')) {
+			wp_die(__('You do not have sufficient permissions to access this page.'));
+		}
+
 		$plugin_public = new OwnerRez_Public($this->ownerrez, $this->version);
 		$plugin_public->clear_transients();
 
