@@ -53,6 +53,7 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
 
         <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
             <input type="hidden" name="action" value="save_ownerrez_settings" />
+            <?php wp_nonce_field( 'save_ownerrez_settings' ); ?>
 
             <table class="form-table" role="presentation">
                 <tr>
@@ -118,6 +119,7 @@ function orez_render_admin($username, $token, $status, $apiRoot, $externalSiteNa
 
         <form id="clear_ownerrez_transients" method="post" action="<?php echo admin_url('admin-post.php'); ?>">
             <input type="hidden" name="action" value="clear_ownerrez_transients" />
+            <?php wp_nonce_field( 'clear_ownerrez_transients' ); ?>
         </form>
     </div>
 
