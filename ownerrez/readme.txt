@@ -1,6 +1,5 @@
-=== Plugin Name ===
+=== OwnerRez ===
 Contributors: ownerrez
-Tags:
 Requires at least: 5.4
 Tested up to: 6.6.0
 Stable tag: 1.2.1
@@ -24,6 +23,10 @@ The OwnerRez terms of service and privacy policy govern our usage of data collec
 [Privacy Policy](https://www.ownerrez.com/support/articles/privacy-security-privacy-policy)
 
 Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.com)
+
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.]( https://patchstack.com/database/vdp/bf555ae4-1b27-49e0-b072-85995b0848a8 )
 
 == Installation ==
 
