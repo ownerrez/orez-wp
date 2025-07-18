@@ -16,7 +16,7 @@
  * Plugin Name:       OwnerRez
  * Plugin URI:        https://www.ownerrez.com/support/wordpress
  * Description:       The official WordPress plugin for the OwnerRez API.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            OwnerRez, Inc.
  * Author URI:        https://www.ownerrez.com/
  * License:           MIT
