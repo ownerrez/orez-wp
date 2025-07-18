@@ -2,7 +2,7 @@
 Contributors: ownerrez
 Requires at least: 5.4
 Tested up to: 6.6.0
-Stable tag: 1.2.1a
+Stable tag: 1.2.2
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -24,10 +24,6 @@ The OwnerRez terms of service and privacy policy govern our usage of data collec
 
 Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.com)
 
-= How can I report security bugs? =
-
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.]( https://patchstack.com/database/vdp/bf555ae4-1b27-49e0-b072-85995b0848a8 )
-
 == Installation ==
 
 1. Extract the ownerrez archive to the `/wp-content/plugins/` directory
@@ -35,6 +31,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.2.2
+- Escape parameters in error messages
+
 = 1.2.1a =
 - Correct readme.txt validation errors
 

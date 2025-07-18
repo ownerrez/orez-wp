@@ -85,7 +85,7 @@ class OwnerRez_ShortCodes {
                 if (method_exists($this, $f))
                     return $this->$f($attrs, $content, $allAttrs);
 
-                return '[The "type" attribute did not match any known shortcode type. Found: '.$attrs["type"].']';
+                return '[The "type" attribute did not match any known shortcode type. Found: ' . esc_html($attrs["type"]) . ']';
             }
             catch (Exception $ex) {
                 return json_encode($ex->getMessage());
@@ -140,7 +140,7 @@ class OwnerRez_ShortCodes {
             $resource = $this->api->send_request($resourceName, $verb, $action, $id, $query, $body);
 
             if ($resource == null) {
-                return "[No record found in ".$resourceName." with the id '".$attrs["id"]."']";
+                return "[No record found in " . esc_html($resourceName) . " with the id '" . esc_html($attrs["id"]) . "']";
             }
 
             if ($attrs["json"]) {
@@ -175,7 +175,7 @@ class OwnerRez_ShortCodes {
                             $output = $this->camelToTitle($output);
                     }
                     else
-                        return "[Unknown field: " . $field . ". No such field found for type: " . $attrs["type"] . "]";
+                        return "[Unknown field: " . esc_html($field) . ". No such field found for type: " . esc_html($attrs["type"]) . "]";
                 }
                 
                 return $output;
@@ -197,7 +197,7 @@ class OwnerRez_ShortCodes {
         $id = intval(trim($attrs["id"], $trimChars));
 
         if ($id == null)
-            return '[The "id" attribute is required for this shortcode. Expected: e.g. '.$trimLetters.'123456 or 123456. Found: '.$attrs["id"].']';
+            return '[The "id" attribute is required for this shortcode. Expected: e.g. ' . esc_html($trimLetters) . '123456 or 123456. Found: ' . esc_html($attrs["id"]) . ']';
 
         return $id;
     }
