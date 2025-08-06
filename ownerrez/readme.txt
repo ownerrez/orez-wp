@@ -31,10 +31,10 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
-= 1.2.3
+= 1.2.3 =
 - Do not attempt to camel-to-title case convert the description fields
 
-= 1.2.2
+= 1.2.2 =
 - Escape parameters in error messages
 
 = 1.2.1a =
