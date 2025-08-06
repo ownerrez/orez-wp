@@ -159,7 +159,7 @@ class OwnerRez_ShortCodes {
                     if (property_exists($output, $field))
                     {
                         $output = $output->$field;
-                        
+
                         if ($raw)
                             continue;
 
@@ -171,8 +171,10 @@ class OwnerRez_ShortCodes {
 
                             $output = join(", ", $output);
                         }
-                        else if (is_string($output))
+                        else if (is_string($output) && stripos($field, 'description') === false) // === so 0 doesn't match
+                        {
                             $output = $this->camelToTitle($output);
+                        }
                     }
                     else
                         return "[Unknown field: " . esc_html($field) . ". No such field found for type: " . esc_html($attrs["type"]) . "]";
