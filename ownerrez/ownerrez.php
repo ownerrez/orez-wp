@@ -16,7 +16,7 @@
  * Plugin Name:       OwnerRez
  * Plugin URI:        https://www.ownerrez.com/support/wordpress
  * Description:       The official WordPress plugin for the OwnerRez API.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            OwnerRez, Inc.
  * Author URI:        https://www.ownerrez.com/
  * License:           MIT
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('OWNERREZ_VERSION', '1.2.3');
+define('OWNERREZ_VERSION', '1.2.4');
 
 /**
  * The code that runs during plugin activation.

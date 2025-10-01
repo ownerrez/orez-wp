@@ -2,7 +2,7 @@
 Contributors: ownerrez
 Requires at least: 5.4
 Tested up to: 6.6.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -31,6 +31,9 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.2.4 =
+- Do not attempt to camel-to-title case convert the headline field
+
 = 1.2.3 =
 - Do not attempt to camel-to-title case convert the description fields
 
@@ -54,7 +57,7 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 = 1.1.17 =
 - Render numeric shortcode values without a format using default format instead of "[Unknown]"
 
-= 1.1.16 = 
+= 1.1.16 =
 - Provide clearer error messages during registration.
 
 = 1.1.15 =

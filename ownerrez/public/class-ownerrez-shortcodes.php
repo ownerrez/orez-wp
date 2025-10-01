@@ -23,6 +23,15 @@
 class OwnerRez_ShortCodes {
 
     /**
+     * Fields that should not be auto-formatted to title case
+     *
+     * @since    1.2.4
+     * @access   private
+     * @var      array    $excludedFields    The fields that should not be auto-formatted to title case.
+     */
+    const excludedFields = [ "headline" ];
+
+    /**
      * The ID of this plugin.
      *
      * @since    1.0.0
@@ -171,7 +180,7 @@ class OwnerRez_ShortCodes {
 
                             $output = join(", ", $output);
                         }
-                        else if (is_string($output) && stripos($field, 'description') === false) // === so 0 doesn't match
+                        else if (is_string($output) && stripos($field, 'description') === false && !in_array($field, self::excludedFields)) // === so 0 doesn't match
                         {
                             $output = $this->camelToTitle($output);
                         }
@@ -179,7 +188,7 @@ class OwnerRez_ShortCodes {
                     else
                         return "[Unknown field: " . esc_html($field) . ". No such field found for type: " . esc_html($attrs["type"]) . "]";
                 }
-                
+
                 return $output;
             }
 
