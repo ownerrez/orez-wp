@@ -33,11 +33,11 @@ class OwnerRez_ShortCodes {
         // Generic / reused fields
         'name', 'text', 'caption', 'title', 'icon', 'key',
         // Listing fields
-        'cancellation_policy', 'check_in_instructions', 'directions', 'house_manual', 'internet_info', 'wifi_network', 'wifi_password', 'registration_number',
-        // Description fields
-        'accommodations_detail', 'accommodations_summary', 'description', 'features_description', 'getting_around', 'getting_there', 'guest_access', 'headline', 'location_description', 'location_other_activities', 'owner_listing_story', 'rate_notes', 'short_description', 'unique_benefits', 'why_purchased',
+        'headline', 'description', 'shortDescription', 'ownerListingStory', 'whyPurchased', 'uniqueBenefits', 'accommodationsSummary', 'accommodationsDetail',
+        'guestAccess', 'gettingThere', 'gettingAround', 'locationDescription', 'locationOtherActivities', 'featuresDescription', 'rateNotes',
+        'directions', 'checkInInstructions', 'internetInfo', 'houseManual',
         // Property fields
-        'living_area_type', 'street1', 'street2', 'city', 'province',
+        'calendarColor', 'street1', 'street2', 'city', 'province',
         // Field Code
         'value',
     ];
