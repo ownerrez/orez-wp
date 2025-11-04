@@ -29,7 +29,18 @@ class OwnerRez_ShortCodes {
      * @access   private
      * @var      array    $excludedFields    The fields that should not be auto-formatted to title case.
      */
-    const excludedFields = [ "headline" ];
+    const excludedFields = [
+        // Generic / reused fields
+        'name', 'text', 'caption', 'title', 'icon', 'key',
+        // Listing fields
+        'headline', 'description', 'shortDescription', 'ownerListingStory', 'whyPurchased', 'uniqueBenefits', 'accommodationsSummary', 'accommodationsDetail',
+        'guestAccess', 'gettingThere', 'gettingAround', 'locationDescription', 'locationOtherActivities', 'featuresDescription', 'rateNotes',
+        'directions', 'checkInInstructions', 'internetInfo', 'houseManual',
+        // Property fields
+        'calendarColor', 'street1', 'street2', 'city', 'province',
+        // Field Code
+        'value',
+    ];
 
     /**
      * The ID of this plugin.
@@ -180,7 +191,10 @@ class OwnerRez_ShortCodes {
 
                             $output = join(", ", $output);
                         }
-                        else if (is_string($output) && stripos($field, 'description') === false && !in_array($field, self::excludedFields)) // === so 0 doesn't match
+                        else if (is_string($output)
+                            && !in_array($field, self::excludedFields)
+                            && stripos($field, 'url') === false // === so 0 doesn't match
+                        )
                         {
                             $output = $this->camelToTitle($output);
                         }
