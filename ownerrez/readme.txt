@@ -1,7 +1,7 @@
 === OwnerRez ===
 Contributors: ownerrez
 Requires at least: 5.4
-Tested up to: 6.6.0
+Tested up to: 6.9.1
 Stable tag: 1.2.5
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
