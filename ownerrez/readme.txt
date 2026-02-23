@@ -2,7 +2,7 @@
 Contributors: ownerrez
 Requires at least: 5.4
 Tested up to: 6.9.1
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -31,6 +31,9 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.2.6 =
+- Tested with WordPress through version 6.9
+
 = 1.2.5 =
 - Create and apply comprehensive list of fields exempt from camel-to-title
 
