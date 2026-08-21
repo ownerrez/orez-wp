@@ -106,7 +106,6 @@ class OwnerRez
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ownerrez-public.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-ownerrez-shortcodes.php';
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-admin.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-ownerrez-ajax.php';
 
 		$this->loader = new OwnerRez_Loader();
 	}
@@ -144,13 +143,6 @@ class OwnerRez
 		$this->loader->add_action('admin_post_save_ownerrez_settings', $plugin_admin, 'menu_settings_save');
 		$this->loader->add_action('admin_post_clear_ownerrez_transients', $plugin_admin, 'clear_transients');
         $this->loader->add_filter('plugin_action_links_ownerrez/ownerrez.php', $plugin_admin, 'plugin_links');
-
-		// define admin ajax end points
-        $plugin_ajax = new OwnerRez_Ajax($this->get_ownerrez(), $this->get_version());
-
-        $this->loader->add_filter('wp_ajax_ownerrez', $plugin_ajax, 'call');
-        $this->loader->add_filter('wp_ajax_nopriv_ownerrez', $plugin_ajax, 'call_nopriv');
-
 	}
 
 	/**

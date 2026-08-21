@@ -8,7 +8,7 @@ Please submit questions or problems to help@ownerrez.com
 
 After installation, go to Admin -> Settings -> OwnerRez and enter a username and personal access token to register your wordpress site.
  
-After registration, you can use this plugin to insert shortcodes for your property details and special widgets, or interact directly with our API using WP admin ajax.
+After registration, you can use this plugin to insert shortcodes for your property details and special widgets.
 
 For full documentation, visit the OwnerRez support articles:
 
@@ -18,31 +18,11 @@ For full documentation, visit the OwnerRez support articles:
 - [Common Issues & Questions](https://www.ownerrez.com/support/articles/wp-plugin-faq)
 
 
-## Custom AJAX
+## Custom AJAX (removed in 1.3.0)
 
-OwnerRez API end points are accessible via admin ajax requests. This feature is currently under development. If you would like to
-use this feature, please [let us know](mailto:help@ownerrez.com) about your use case. 
-
-```javascript
-var ownerrezRequest = { 
-    resource: 'properties', // required
-    verb: 'get', // optional. default is 'get' 
-    action: 'search', // optional
-    id: null, // usually optional. required by some verbs or actions 
-    query: {  // for 'get' verbs, query will be included as the querystring. For other verbs, query will be attached as the json request body.
-        limit: 5,
-        offset: 0 
-    } 
-};
-
-jQuery.post(ajaxurl, 
-    { 
-        action: 'ownerrez', 
-        call: ownerrezRequest 
-    }, 
-    function(response) { /* do something with the json response from OwnerRez */ }
-);
-```
+Earlier versions exposed the OwnerRez API through an `ownerrez` admin-ajax action. This feature never left development
+and was removed in 1.3.0. If your site calls this endpoint, please [contact us](mailto:help@ownerrez.com) before
+upgrading so we can help you move to a supported alternative.
 
 ## Release
 

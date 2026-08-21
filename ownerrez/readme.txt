@@ -2,7 +2,7 @@
 Contributors: ownerrez
 Requires at least: 5.4
 Tested up to: 6.9.1
-Stable tag: 1.2.6
+Stable tag: 1.3.0
 License: MIT
 License URI: https://github.com/ownerrez/orez-wp/blob/master/LICENSE
 Tags: vacation rental, property management, airbnb, vrbo, booking, listing, vr, rental, accomodation
@@ -31,6 +31,9 @@ Please submit questions or problems to [help@ownerrez.com](mailto:help@ownerrez.
 1. Complete the registration information (username and personal access token) under Settings -> OwnerRez
 
 == Changelog ==
+= 1.3.0 =
+- **Breaking** Removed the "Custom AJAX" endpoint (the `ownerrez` admin-ajax action). This feature never left development and has been retired. If your site calls it, contact help@ownerrez.com before upgrading and we will help you move to a supported alternative.
+
 = 1.2.6 =
 - Tested with WordPress through version 6.9
 
